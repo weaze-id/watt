@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../palette/palette.dart';
 import 'select_item.dart';
 
-class SelectListBase extends StatefulWidget {
+class SelectListBase extends StatelessWidget {
   const SelectListBase({
     Key? key,
     required this.contentPadding,
@@ -14,40 +14,28 @@ class SelectListBase extends StatefulWidget {
   }) : super(key: key);
 
   final EdgeInsetsGeometry? contentPadding;
-  final List<SelectItem> values;
+  final List<int> values;
   final List<SelectItem> items;
-  final void Function(List<SelectItem> values) onChanged;
+  final void Function(List<int> values) onChanged;
   final bool multipleSelect;
 
-  @override
-  State<SelectListBase> createState() => _SelectListBaseState();
-}
-
-class _SelectListBaseState extends State<SelectListBase> {
-  final values = <SelectItem>[];
-
-  void initState() {
-    values.addAll(widget.values);
-    super.initState();
-  }
-
-  _onSelect(SelectItem item) {
-    final isAny = values.any((e) => e.value == item.value);
-    if (widget.multipleSelect) {
+  _onSelect(int index) {
+    final newValues = [...values];
+    if (multipleSelect) {
+      final isAny = newValues.any((e) => e == index);
       if (isAny) {
-        setState(() => values.removeWhere((e) => e.value == item.value));
+        newValues.removeWhere((e) => e == index);
       } else {
-        setState(() => values.add(item));
+        newValues.add(index);
       }
-
-      widget.onChanged(values);
+      onChanged(newValues);
       return;
     }
 
-    setState(() => values.clear());
-    setState(() => values.add(item));
+    newValues.clear();
+    newValues.add(index);
 
-    widget.onChanged(values);
+    onChanged(newValues);
   }
 
   @override
@@ -55,10 +43,11 @@ class _SelectListBaseState extends State<SelectListBase> {
     final palette = Palette.of(context);
     final children = <Widget>[];
 
-    for (final item in widget.items) {
+    for (int i = 0; i < items.length; i++) {
+      final item = items[i];
       children.add(
         ListTile(
-          contentPadding: widget.contentPadding,
+          contentPadding: contentPadding,
           title: Text(
             item.title,
             overflow: TextOverflow.ellipsis,
@@ -71,10 +60,10 @@ class _SelectListBaseState extends State<SelectListBase> {
                   maxLines: 1,
                 )
               : null,
-          trailing: values.any((e) => e.value == item.value)
+          trailing: values.any((e) => e == i)
               ? Icon(Icons.check, color: palette.primary)
               : null,
-          onTap: () => _onSelect(item),
+          onTap: () => _onSelect(i),
         ),
       );
     }

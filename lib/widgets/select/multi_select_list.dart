@@ -13,9 +13,9 @@ class MultiSelectList extends StatelessWidget {
   }) : super(key: key);
 
   final EdgeInsetsGeometry? contentPadding;
-  final List<SelectItem> values;
+  final List<int> values;
   final List<SelectItem> items;
-  final void Function(List<SelectItem> value) onChanged;
+  final void Function(List<int> value) onChanged;
 
   @override
   Widget build(BuildContext context) {
