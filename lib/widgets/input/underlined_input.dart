@@ -4,8 +4,8 @@ import 'package:witt/witt.dart';
 import '../../theme/theme_generator_settings.dart';
 import 'input_base.dart';
 
-class FilledInput extends StatelessWidget {
-  const FilledInput({
+class UnderlinedInput extends StatelessWidget {
+  const UnderlinedInput({
     Key? key,
     this.controller,
     this.label,
@@ -20,6 +20,7 @@ class FilledInput extends StatelessWidget {
     this.onSaved,
     this.onChanged,
     this.onFieldSubmitted,
+    this.filled,
     this.fillColor,
   }) : super(key: key);
 
@@ -36,41 +37,33 @@ class FilledInput extends StatelessWidget {
   final void Function(String?)? onSaved;
   final void Function(String?)? onChanged;
   final void Function(String?)? onFieldSubmitted;
+  final bool? filled;
   final Color? fillColor;
 
   @override
   Widget build(BuildContext context) {
     final themeGeneratorSettings = WService.get<ThemeGeneratorSettings>();
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        if (label != null) ...[
-          Text(label!),
-          const SizedBox(height: 4),
-        ],
-        InputBase(
-          controller: controller,
-          hint: hint,
-          initialValue: initialValue,
-          passwordField: passwordField,
-          prefixIcon: prefixIcon,
-          maxLength: maxLength,
-          maxLines: maxLines,
-          keyboardType: keyboardType,
-          validator: validator,
-          onSaved: onSaved,
-          onChanged: onChanged,
-          onFieldSubmitted: onFieldSubmitted,
-          filled: true,
-          fillColor: fillColor,
-          border: OutlineInputBorder(
-            borderSide: BorderSide.none,
-            borderRadius: BorderRadius.circular(
-              themeGeneratorSettings.inputBorderRadius,
-            ),
-          ),
+    return InputBase(
+      controller: controller,
+      label: label,
+      hint: hint,
+      initialValue: initialValue,
+      passwordField: passwordField,
+      prefixIcon: prefixIcon,
+      maxLength: maxLength,
+      maxLines: maxLines,
+      keyboardType: keyboardType,
+      validator: validator,
+      onSaved: onSaved,
+      onChanged: onChanged,
+      onFieldSubmitted: onFieldSubmitted,
+      filled: filled,
+      fillColor: fillColor,
+      border: UnderlineInputBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(themeGeneratorSettings.inputBorderRadius),
         ),
-      ],
+      ),
     );
   }
 }

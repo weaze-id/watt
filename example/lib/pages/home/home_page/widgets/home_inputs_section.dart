@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:watt/watt.dart';
+import 'package:watt/widgets/input/filled_input.dart';
 
 class HomeInputsSection extends StatelessWidget {
   const HomeInputsSection({Key? key}) : super(key: key);
@@ -16,8 +17,9 @@ class HomeInputsSection extends StatelessWidget {
           columnCount: Breakpoints.value(context, sm: 1, md: 2, lg: 3),
           gap: 16,
           children: const [
-            FilledInput(label: "Input field"),
-            OutlinedInput(label: "Input field"),
+            UnderlinedInput(label: "Underlined field"),
+            OutlinedInput(label: "Outlined field"),
+            FilledInput(label: "Filled field"),
           ],
         ),
       ],
