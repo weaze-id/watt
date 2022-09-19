@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:witt/witt.dart';
 
-import '../../theme/theme_generator_settings.dart';
+import '../../theme/theme_generator.dart';
 import 'input_base.dart';
 
 class FilledInput extends StatelessWidget {
@@ -40,7 +39,7 @@ class FilledInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeGeneratorSettings = WService.get<ThemeGeneratorSettings>();
+    final themeGeneratorSettings = ThemeGenerator.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -66,7 +65,7 @@ class FilledInput extends StatelessWidget {
           border: OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.circular(
-              themeGeneratorSettings.inputBorderRadius,
+              themeGeneratorSettings!.inputBorderRadius,
             ),
           ),
         ),

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:witt/witt.dart';
 
 import '../constants/string_constants.dart';
-import '../palette/palette.dart';
+import '../theme/palette.dart';
 
 class SnackbarUtil {
   static void showSnackbar(String title) {

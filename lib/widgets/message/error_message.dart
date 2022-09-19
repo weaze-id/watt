@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../constants/string_constants.dart';
-import '../../palette/palette.dart';
+import '../../theme/palette.dart';
 
 class ErrorMessage extends StatelessWidget {
   const ErrorMessage({

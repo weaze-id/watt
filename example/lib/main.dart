@@ -15,22 +15,23 @@ void main() {
   );
 
   final themeMode = WService.get<ValueNotifier<ThemeMode>>();
-  final themeGenerator = ThemeGenerator(settings: ThemeGeneratorSettings());
 
   runApp(
     WListener(
       notifier: themeMode,
       builder: (context) {
         final themeModeValue = themeMode.value;
-        return MaterialApp(
-          navigatorKey: WRouter.navigatorKey,
-          title: "Example",
-          themeMode: themeModeValue,
-          theme: themeGenerator.generate(),
-          darkTheme: themeGenerator.generateDark(),
-          onGenerateRoute: (settings) => WRouter.onGenerateMaterialRoute(
-            settings: settings,
-            pages: [...HomeRoute.route()],
+        return Watt(
+          builder: (context, settings) => MaterialApp(
+            navigatorKey: WRouter.navigatorKey,
+            title: "Example",
+            themeMode: themeModeValue,
+            theme: settings.generate(context),
+            darkTheme: settings.generateDark(context),
+            onGenerateRoute: (settings) => WRouter.onGenerateMaterialRoute(
+              settings: settings,
+              pages: [...HomeRoute.route()],
+            ),
           ),
         );
       },

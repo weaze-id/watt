@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../palette/palette.dart';
+import '../../theme/palette.dart';
 
 class ButtonChild extends StatelessWidget {
   const ButtonChild({

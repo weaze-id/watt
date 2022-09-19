@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../palette/palette.dart';
+import '../../theme/palette.dart';
 import 'select_item.dart';
 
 class SelectListBase extends StatelessWidget {

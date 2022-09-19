@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:witt/witt.dart';
 
-import '../../theme/theme_generator_settings.dart';
+import '../../theme/theme_generator.dart';
 import 'input_base.dart';
 
 class OutlinedInput extends StatelessWidget {
@@ -38,7 +37,7 @@ class OutlinedInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeGeneratorSettings = WService.get<ThemeGeneratorSettings>();
+    final themeGeneratorSettings = ThemeGenerator.of(context);
     return InputBase(
       controller: controller,
       label: label,
@@ -55,7 +54,7 @@ class OutlinedInput extends StatelessWidget {
       onFieldSubmitted: onFieldSubmitted,
       border: OutlineInputBorder(
         borderRadius:
-            BorderRadius.circular(themeGeneratorSettings.inputBorderRadius),
+            BorderRadius.circular(themeGeneratorSettings!.inputBorderRadius),
       ),
     );
   }
