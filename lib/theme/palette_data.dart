@@ -23,6 +23,8 @@ class PaletteData {
   final MaterialColor blue;
   final MaterialColor indigo;
   final MaterialColor pink;
+  final MaterialColor black;
+  final MaterialColor white;
   final Brightness brightness;
 
   const PaletteData({
@@ -46,6 +48,8 @@ class PaletteData {
     required this.blue,
     required this.indigo,
     required this.pink,
+    required this.black,
+    required this.white,
     required this.brightness,
   });
 
@@ -70,6 +74,8 @@ class PaletteData {
     MaterialColor? blue,
     MaterialColor? indigo,
     MaterialColor? pink,
+    MaterialColor? black,
+    MaterialColor? white,
     Brightness? brightness,
   }) {
     return PaletteData(
@@ -93,6 +99,8 @@ class PaletteData {
       blue: blue ?? this.blue,
       indigo: indigo ?? this.indigo,
       pink: pink ?? this.pink,
+      black: pink ?? this.black,
+      white: pink ?? this.white,
       brightness: brightness ?? this.brightness,
     );
   }
@@ -136,6 +144,8 @@ class PaletteData {
     blue: ColorUtil.createMaterialColor(const Color(0XFF2196F3)),
     indigo: ColorUtil.createMaterialColor(const Color(0XFF3F51B5)),
     pink: ColorUtil.createMaterialColor(const Color(0XFFE91E63)),
+    black: ColorUtil.createMaterialColor(Colors.black),
+    white: ColorUtil.createMaterialColor(Colors.white),
     brightness: Brightness.light,
   );
 
@@ -160,6 +170,8 @@ class PaletteData {
     blue: ColorUtil.createMaterialColor(const Color(0XFFBBDEFB)),
     indigo: ColorUtil.createMaterialColor(const Color(0XFFC5CAE9)),
     pink: ColorUtil.createMaterialColor(const Color(0XFFF8BBD0)),
+    black: ColorUtil.createMaterialColor(Colors.black),
+    white: ColorUtil.createMaterialColor(Colors.white),
     brightness: Brightness.dark,
   );
 }
