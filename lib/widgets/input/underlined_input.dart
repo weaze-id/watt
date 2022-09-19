@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 import '../../theme/theme_generator.dart';
@@ -21,6 +22,7 @@ class UnderlinedInput extends StatelessWidget {
     this.onFieldSubmitted,
     this.filled,
     this.fillColor,
+    this.contentPadding,
   }) : super(key: key);
 
   final TextEditingController? controller;
@@ -38,6 +40,7 @@ class UnderlinedInput extends StatelessWidget {
   final void Function(String?)? onFieldSubmitted;
   final bool? filled;
   final Color? fillColor;
+  final EdgeInsetsGeometry? contentPadding;
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +61,7 @@ class UnderlinedInput extends StatelessWidget {
       onFieldSubmitted: onFieldSubmitted,
       filled: filled,
       fillColor: fillColor,
+      contentPadding: contentPadding,
       border: UnderlineInputBorder(
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(themeGeneratorSettings!.inputBorderRadius),

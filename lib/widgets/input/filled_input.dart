@@ -20,6 +20,7 @@ class FilledInput extends StatelessWidget {
     this.onChanged,
     this.onFieldSubmitted,
     this.fillColor,
+    this.contentPadding,
   }) : super(key: key);
 
   final TextEditingController? controller;
@@ -36,6 +37,7 @@ class FilledInput extends StatelessWidget {
   final void Function(String?)? onChanged;
   final void Function(String?)? onFieldSubmitted;
   final Color? fillColor;
+  final EdgeInsetsGeometry? contentPadding;
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +51,7 @@ class FilledInput extends StatelessWidget {
         ],
         InputBase(
           controller: controller,
+          label: label,
           hint: hint,
           initialValue: initialValue,
           passwordField: passwordField,
@@ -62,6 +65,7 @@ class FilledInput extends StatelessWidget {
           onFieldSubmitted: onFieldSubmitted,
           filled: true,
           fillColor: fillColor,
+          contentPadding: contentPadding,
           border: OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.circular(

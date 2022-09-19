@@ -19,6 +19,7 @@ class OutlinedInput extends StatelessWidget {
     this.onSaved,
     this.onChanged,
     this.onFieldSubmitted,
+    this.contentPadding,
   }) : super(key: key);
 
   final TextEditingController? controller;
@@ -34,6 +35,7 @@ class OutlinedInput extends StatelessWidget {
   final void Function(String?)? onSaved;
   final void Function(String?)? onChanged;
   final void Function(String?)? onFieldSubmitted;
+  final EdgeInsetsGeometry? contentPadding;
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +54,9 @@ class OutlinedInput extends StatelessWidget {
       onSaved: onSaved,
       onChanged: onChanged,
       onFieldSubmitted: onFieldSubmitted,
+      filled: false,
+      fillColor: null,
+      contentPadding: contentPadding,
       border: OutlineInputBorder(
         borderRadius:
             BorderRadius.circular(themeGeneratorSettings!.inputBorderRadius),
