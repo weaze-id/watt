@@ -38,9 +38,44 @@ class Loader extends StatelessWidget {
           onTryAgain: onTryAgain,
         );
       case LoaderState.none:
-        return child;
+        return _Child(child: child);
       default:
         return const SizedBox();
     }
+  }
+}
+
+class _Child extends StatefulWidget {
+  const _Child({
+    Key? key,
+    required this.child,
+  }) : super(key: key);
+
+  final Widget child;
+
+  @override
+  State<_Child> createState() => _ChildState();
+}
+
+class _ChildState extends State<_Child> with TickerProviderStateMixin {
+  late final AnimationController _controller = AnimationController(
+    duration: const Duration(milliseconds: 300),
+    vsync: this,
+  )..forward();
+
+  late final Animation<double> _animation = CurvedAnimation(
+    parent: _controller,
+    curve: standardEasing,
+  );
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FadeTransition(opacity: _animation, child: widget.child);
   }
 }

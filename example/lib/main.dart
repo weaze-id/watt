@@ -8,6 +8,7 @@ import 'pages/home/home_route.dart';
 void main() {
   WService.enableLog = true;
 
+  WService.addSingleton(() => ValueNotifier(LoaderState.none));
   WService.addSingleton(() => ValueNotifier(ThemeMode.light));
   WService.addSingleton(() => const FlutterSecureStorage());
   WService.addSingleton(
