@@ -20,9 +20,33 @@ class HomeInputsSection extends StatelessWidget {
             UnderlinedInput(label: "Underlined field"),
             OutlinedInput(label: "Outlined field"),
             FilledInput(label: "Filled field"),
+            _FileInput()
           ],
         ),
       ],
+    );
+  }
+}
+
+class _FileInput extends StatefulWidget {
+  const _FileInput({Key? key}) : super(key: key);
+
+  @override
+  State<_FileInput> createState() => _FileInputState();
+}
+
+class _FileInputState extends State<_FileInput> {
+  final files = <PlatformFile>[];
+
+  @override
+  Widget build(BuildContext context) {
+    return FileInput(
+      values: files,
+      allowMultiple: true,
+      onChanged: (values) {
+        setState(() => files.clear());
+        setState(() => files.addAll(values));
+      },
     );
   }
 }

@@ -7,6 +7,8 @@ import 'theme/palette_data.dart';
 import 'theme/theme_generator.dart';
 import 'theme/theme_generator_settings.dart';
 
+export 'package:file_picker/file_picker.dart' show PlatformFile;
+
 export './http/http_client.dart';
 export './http/http_transaction.dart';
 export './responsive/breakpoints.dart';
@@ -23,6 +25,7 @@ export './utils/snackbar_util.dart';
 export './widgets/button/big_button.dart';
 export './widgets/button/outlined_big_button.dart';
 export './widgets/button/text_big_button.dart';
+export './widgets/input/file_input.dart';
 export './widgets/input/input_base.dart';
 export './widgets/input/outlined_input.dart';
 export './widgets/loader/loader.dart';
