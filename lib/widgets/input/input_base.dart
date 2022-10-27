@@ -16,6 +16,8 @@ class InputBase extends StatefulWidget {
     required this.onSaved,
     required this.onChanged,
     required this.onFieldSubmitted,
+    this.autofocus = false,
+    this.autocorrect = false,
     required this.filled,
     required this.fillColor,
     required this.border,
@@ -35,6 +37,8 @@ class InputBase extends StatefulWidget {
   final void Function(String?)? onSaved;
   final void Function(String?)? onChanged;
   final void Function(String?)? onFieldSubmitted;
+  final bool autofocus;
+  final bool autocorrect;
   final bool? filled;
   final Color? fillColor;
   final InputBorder? border;
@@ -65,6 +69,8 @@ class _InputBaseState extends State<InputBase> {
       obscureText: widget.passwordField && !_isPasswordShow,
       maxLength: widget.maxLength,
       maxLines: widget.maxLines,
+      autofocus: widget.autofocus,
+      autocorrect: widget.autocorrect,
       decoration: InputDecoration(
         contentPadding: widget.contentPadding,
         labelText: widget.label,

@@ -108,7 +108,7 @@ class _FileListTile extends StatelessWidget {
       "webp"
     ].contains(extension);
     final isVideo = ["webm", "mkv", "mp4", "m4p", "m4v"].contains(extension);
-    final isDocument = ["pdf", "doc", "docx", "odt"].contains(extension);
+    final isDocument = ["pdf", "doc", "docx", "odt", "txt"].contains(extension);
 
     return ListTile(
       leading: Icon(
@@ -118,7 +118,7 @@ class _FileListTile extends StatelessWidget {
                 ? Icons.movie
                 : isDocument
                     ? Icons.description
-                    : Icons.drafts,
+                    : Icons.attachment,
         color: palette.primary,
       ),
       title: Text(

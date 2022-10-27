@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:watt/watt.dart';
-import 'package:watt/widgets/input/filled_input.dart';
 
 class HomeInputsSection extends StatelessWidget {
   const HomeInputsSection({Key? key}) : super(key: key);

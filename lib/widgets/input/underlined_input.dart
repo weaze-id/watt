@@ -22,6 +22,8 @@ class UnderlinedInput extends StatelessWidget {
     this.filled,
     this.fillColor,
     this.contentPadding,
+    this.autofocus = false,
+    this.autocorrect = false,
   }) : super(key: key);
 
   final TextEditingController? controller;
@@ -40,6 +42,8 @@ class UnderlinedInput extends StatelessWidget {
   final bool? filled;
   final Color? fillColor;
   final EdgeInsetsGeometry? contentPadding;
+  final bool autofocus;
+  final bool autocorrect;
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +65,8 @@ class UnderlinedInput extends StatelessWidget {
       filled: filled,
       fillColor: fillColor,
       contentPadding: contentPadding,
+      autofocus: autofocus,
+      autocorrect: autocorrect,
       border: UnderlineInputBorder(
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(themeGeneratorSettings!.inputBorderRadius),
