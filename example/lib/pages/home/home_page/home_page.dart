@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:watt/watt.dart';
 import 'package:witt/witt.dart';
 
+import '../home_route.dart';
 import 'widgets/home_button_section.dart';
 import 'widgets/home_color_palette_section.dart';
 import 'widgets/home_format_section.dart';
@@ -19,7 +20,13 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Example"),
-        actions: const [_ThemeModeChangebutton()],
+        actions: [
+          IconButton(
+            onPressed: () => WRouter.pushNamed(HomeRoute.infiniteScrollPath),
+            icon: const Icon(Icons.list),
+          ),
+          const _ThemeModeChangebutton(),
+        ],
       ),
       body: WListener(
         notifier: loaderState,

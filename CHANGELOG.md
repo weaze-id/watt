@@ -1,3 +1,7 @@
+## 0.2.1
+
+- Add infinite scroll
+
 ## 0.1.1
 
 - Use index.dart
