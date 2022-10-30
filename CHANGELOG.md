@@ -1,3 +1,7 @@
+## 0.2.2
+
+- Fix http transaction show http error
+
 ## 0.2.1
 
 - Fix http transaction show http error

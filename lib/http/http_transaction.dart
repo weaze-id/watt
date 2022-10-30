@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:collection/collection.dart';
 import 'package:http/http.dart' as http;
 import 'package:witt/witt.dart';
 
@@ -47,20 +48,18 @@ class HttpTransaction {
 
     final errors = dataMap["errors"];
     if (errors != null) {
-      if (errors is Map<String, List<String>>) {
-        final errorKeys = errors.keys.toList();
-        if (errorKeys.isNotEmpty) {
-          final firstError = errors[errorKeys[0]]![0];
-          if (firstError.isNotEmpty) {
-            DialogUtil.showAlertDialog(title: "Error", message: firstError);
-            return;
-          }
-        }
-      }
-
       if (errors is String) {
         DialogUtil.showAlertDialog(title: "Error", message: errors);
         return;
+      }
+
+      final errorKeys = errors.keys.toList();
+      if (errorKeys.isNotEmpty) {
+        final firstError = errors[errorKeys[0]]![0];
+        if (firstError.isNotEmpty) {
+          DialogUtil.showAlertDialog(title: "Error", message: firstError);
+          return;
+        }
       }
     }
 
