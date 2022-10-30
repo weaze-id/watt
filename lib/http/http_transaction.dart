@@ -44,37 +44,42 @@ class HttpTransaction {
 
   void _showHttpError() {
     final dataMap = json.decode(errorMessage!);
+
     final errors = dataMap["errors"];
-
-    if (errors == null) {
-      final message = dataMap["message"];
-      if (message != null && message is String) {
-        DialogUtil.showAlertDialog(title: "Error", message: message);
-        return;
+    if (errors != null) {
+      if (errors is Map<String, List<String>>) {
+        final errorKeys = errors.keys.toList();
+        if (errorKeys.isNotEmpty) {
+          final firstError = errors[errorKeys[0]]![0];
+          if (firstError.isNotEmpty) {
+            DialogUtil.showAlertDialog(title: "Error", message: firstError);
+            return;
+          }
+        }
       }
 
-      final error = dataMap["error"];
-      if (error != null && error is String) {
-        DialogUtil.showAlertDialog(title: "Error", message: error);
+      if (errors is String) {
+        DialogUtil.showAlertDialog(title: "Error", message: errors);
         return;
       }
+    }
 
-      final data = dataMap["data"];
-      if (data != null && data is String) {
-        DialogUtil.showAlertDialog(title: "Error", message: data);
-        return;
-      }
-
+    final message = dataMap["message"];
+    if (message != null && message is String) {
+      DialogUtil.showAlertDialog(title: "Error", message: message);
       return;
     }
 
-    final List? errorKeys = errors.keys.toList();
-    if (errorKeys != null && errorKeys.isNotEmpty) {
-      final firstError = errors[errorKeys[0]][0];
-      if (firstError != null && firstError is String) {
-        DialogUtil.showAlertDialog(title: "Error", message: firstError);
-        return;
-      }
+    final error = dataMap["error"];
+    if (error != null && error is String) {
+      DialogUtil.showAlertDialog(title: "Error", message: error);
+      return;
+    }
+
+    final data = dataMap["data"];
+    if (data != null && data is String) {
+      DialogUtil.showAlertDialog(title: "Error", message: data);
+      return;
     }
 
     DialogUtil.showAlertDialog(
