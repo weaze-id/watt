@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:collection/collection.dart';
 import 'package:http/http.dart' as http;
 import 'package:witt/witt.dart';
 
