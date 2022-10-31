@@ -1,3 +1,10 @@
+## 0.4.0
+
+- Add input border color
+- Add input label color
+- Add input hint color
+- Add input icon color
+
 ## 0.3.0
 
 - Add leading property to SelectItem

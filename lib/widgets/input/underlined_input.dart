@@ -20,6 +20,9 @@ class UnderlinedInput extends StatelessWidget {
     this.onChanged,
     this.onFieldSubmitted,
     this.filled,
+    this.iconColor,
+    this.hintColor,
+    this.borderColor,
     this.fillColor,
     this.contentPadding,
     this.autofocus = false,
@@ -40,6 +43,9 @@ class UnderlinedInput extends StatelessWidget {
   final void Function(String?)? onChanged;
   final void Function(String?)? onFieldSubmitted;
   final bool? filled;
+  final Color? iconColor;
+  final Color? hintColor;
+  final Color? borderColor;
   final Color? fillColor;
   final EdgeInsetsGeometry? contentPadding;
   final bool autofocus;
@@ -63,11 +69,16 @@ class UnderlinedInput extends StatelessWidget {
       onChanged: onChanged,
       onFieldSubmitted: onFieldSubmitted,
       filled: filled,
+      iconColor: iconColor,
+      hintColor: hintColor,
       fillColor: fillColor,
       contentPadding: contentPadding,
       autofocus: autofocus,
       autocorrect: autocorrect,
       border: UnderlineInputBorder(
+        borderSide: borderColor != null
+            ? BorderSide(color: borderColor!)
+            : const BorderSide(),
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(themeGeneratorSettings!.inputBorderRadius),
         ),

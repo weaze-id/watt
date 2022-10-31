@@ -19,6 +19,9 @@ class FilledInput extends StatelessWidget {
     this.onSaved,
     this.onChanged,
     this.onFieldSubmitted,
+    this.iconColor,
+    this.labelColor,
+    this.hintColor,
     this.fillColor,
     this.contentPadding,
     this.autofocus = false,
@@ -38,6 +41,9 @@ class FilledInput extends StatelessWidget {
   final void Function(String?)? onSaved;
   final void Function(String?)? onChanged;
   final void Function(String?)? onFieldSubmitted;
+  final Color? iconColor;
+  final Color? labelColor;
+  final Color? hintColor;
   final Color? fillColor;
   final EdgeInsetsGeometry? contentPadding;
   final bool autofocus;
@@ -50,7 +56,7 @@ class FilledInput extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (label != null) ...[
-          Text(label!),
+          Text(label!, style: TextStyle(color: labelColor)),
           const SizedBox(height: 4),
         ],
         InputBase(
@@ -68,6 +74,8 @@ class FilledInput extends StatelessWidget {
           onChanged: onChanged,
           onFieldSubmitted: onFieldSubmitted,
           filled: true,
+          iconColor: iconColor,
+          hintColor: hintColor,
           fillColor: fillColor,
           contentPadding: contentPadding,
           autofocus: autofocus,

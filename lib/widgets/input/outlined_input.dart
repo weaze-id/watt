@@ -19,6 +19,9 @@ class OutlinedInput extends StatelessWidget {
     this.onSaved,
     this.onChanged,
     this.onFieldSubmitted,
+    this.iconColor,
+    this.hintColor,
+    this.borderColor,
     this.contentPadding,
     this.autofocus = false,
     this.autocorrect = false,
@@ -37,6 +40,9 @@ class OutlinedInput extends StatelessWidget {
   final void Function(String?)? onSaved;
   final void Function(String?)? onChanged;
   final void Function(String?)? onFieldSubmitted;
+  final Color? iconColor;
+  final Color? hintColor;
+  final Color? borderColor;
   final EdgeInsetsGeometry? contentPadding;
   final bool autofocus;
   final bool autocorrect;
@@ -59,13 +65,19 @@ class OutlinedInput extends StatelessWidget {
       onChanged: onChanged,
       onFieldSubmitted: onFieldSubmitted,
       filled: false,
+      iconColor: iconColor,
+      hintColor: hintColor,
       fillColor: null,
       contentPadding: contentPadding,
       autofocus: autofocus,
       autocorrect: autocorrect,
       border: OutlineInputBorder(
-        borderRadius:
-            BorderRadius.circular(themeGeneratorSettings!.inputBorderRadius),
+        borderSide: borderColor != null
+            ? BorderSide(color: borderColor!)
+            : const BorderSide(),
+        borderRadius: BorderRadius.circular(
+          themeGeneratorSettings!.inputBorderRadius,
+        ),
       ),
     );
   }

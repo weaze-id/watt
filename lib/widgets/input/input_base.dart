@@ -19,6 +19,8 @@ class InputBase extends StatefulWidget {
     this.autofocus = false,
     this.autocorrect = false,
     required this.filled,
+    this.iconColor,
+    this.hintColor,
     required this.fillColor,
     required this.border,
     required this.contentPadding,
@@ -40,6 +42,8 @@ class InputBase extends StatefulWidget {
   final bool autofocus;
   final bool autocorrect;
   final bool? filled;
+  final Color? iconColor;
+  final Color? hintColor;
   final Color? fillColor;
   final InputBorder? border;
   final EdgeInsetsGeometry? contentPadding;
@@ -72,12 +76,14 @@ class _InputBaseState extends State<InputBase> {
       autofocus: widget.autofocus,
       autocorrect: widget.autocorrect,
       decoration: InputDecoration(
+        hintStyle: TextStyle(color: widget.hintColor),
         contentPadding: widget.contentPadding,
         labelText: widget.label,
         hintText: widget.hint,
         filled: widget.filled,
         fillColor: widget.fillColor,
         border: widget.border,
+        iconColor: widget.iconColor,
         prefixIcon: widget.prefixIcon,
         suffixIcon: widget.passwordField ? iconButton : null,
       ),
