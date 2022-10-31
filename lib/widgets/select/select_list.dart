@@ -13,7 +13,7 @@ class SelectList extends StatelessWidget {
   }) : super(key: key);
 
   final EdgeInsetsGeometry? contentPadding;
-  final int value;
+  final int? value;
   final List<SelectItem> items;
   final void Function(int value) onChanged;
 
@@ -21,7 +21,7 @@ class SelectList extends StatelessWidget {
   Widget build(BuildContext context) {
     return SelectListBase(
       contentPadding: contentPadding,
-      values: [value],
+      values: value != null ? [value!] : [],
       items: items,
       onChanged: (values) => onChanged.call(values.first),
       multipleSelect: false,

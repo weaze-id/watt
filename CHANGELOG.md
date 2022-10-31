@@ -1,3 +1,8 @@
+## 0.3.0
+
+- Add leading property to SelectItem
+- Make value property in SelectList nullable
+
 ## 0.2.2
 
 - Fix http transaction show http error

@@ -48,6 +48,7 @@ class SelectListBase extends StatelessWidget {
       children.add(
         ListTile(
           contentPadding: contentPadding,
+          leading: item.leading,
           title: Text(
             item.title,
             overflow: TextOverflow.ellipsis,
