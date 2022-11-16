@@ -2,15 +2,15 @@ library watt;
 
 import 'package:flutter/material.dart';
 
-import 'theme/index.dart';
+import 'src/theme/index.dart';
 
 export 'package:file_picker/file_picker.dart' show PlatformFile;
 
-export './http/index.dart';
-export './responsive/index.dart';
-export './theme/index.dart';
-export './utils/index.dart';
-export './widgets/index.dart';
+export 'src/http/index.dart';
+export 'src/responsive/index.dart';
+export 'src/theme/index.dart';
+export 'src/utils/index.dart';
+export 'src/widgets/index.dart';
 
 class Watt extends StatelessWidget {
   const Watt({
