@@ -23,12 +23,12 @@ void main() {
       builder: (context) {
         final themeModeValue = themeMode.value;
         return Watt(
-          builder: (context, settings) => MaterialApp(
+          builder: (context, theme, darkTheme) => MaterialApp(
             navigatorKey: WRouter.navigatorKey,
             title: "Example",
             themeMode: themeModeValue,
-            theme: settings.generate(context),
-            darkTheme: settings.generateDark(context),
+            theme: theme,
+            darkTheme: darkTheme,
             onGenerateRoute: (settings) => WRouter.onGenerateMaterialRoute(
               settings: settings,
               pages: [...HomeRoute.route()],

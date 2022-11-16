@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 
-import 'palette.dart';
-import 'palette_data.dart';
+import 'index.dart';
 
-class ThemeGeneratorSettings {
+class WattThemeData {
   final String fontFamily;
   final double buttonBorderRadius;
   final double inputBorderRadius;
   final bool appBarCenterTitle;
   final double appBarElevation;
 
-  ThemeGeneratorSettings({
+  WattThemeData({
     this.fontFamily = "Poppins",
     this.buttonBorderRadius = 8,
     this.inputBorderRadius = 8,
@@ -35,20 +34,8 @@ class ThemeGeneratorSettings {
       decorationColor: palette.onBackground,
     );
 
-    final elevatedButtonThemeData = ElevatedButtonThemeData(
-      style: _buttonStyle(palette).copyWith(
-        overlayColor: MaterialStateColor.resolveWith(
-          (states) => Colors.black.withOpacity(.25),
-        ),
-      ),
-    );
-
-    final textButtonThemeData =
-        TextButtonThemeData(style: _buttonStyle(palette));
-    final outlinedButtonThemeData =
-        OutlinedButtonThemeData(style: _buttonStyle(palette));
-
     return ThemeData(
+      fontFamily: fontFamily,
       colorScheme: palette.toColorScheme(),
       textTheme: textTheme,
       primaryColor: palette.primary,
@@ -60,13 +47,16 @@ class ThemeGeneratorSettings {
       dialogBackgroundColor: palette.surface,
       dividerColor: palette.gray,
       tooltipTheme: _tooltipThemeData(palette),
-      appBarTheme: _appBarTheme(palette),
+      appBarTheme: _appBarTheme(palette, textTheme),
+      drawerTheme: DrawerThemeData(backgroundColor: palette.surface),
       tabBarTheme: _tabBarTheme(palette),
+      bottomAppBarTheme: BottomAppBarTheme(color: palette.surface),
       bottomNavigationBarTheme: _bottomNavBarThemeData(palette, textTheme),
       bottomSheetTheme: BottomSheetThemeData(backgroundColor: palette.surface),
-      elevatedButtonTheme: elevatedButtonThemeData,
-      textButtonTheme: textButtonThemeData,
-      outlinedButtonTheme: outlinedButtonThemeData,
+      elevatedButtonTheme: _elevatedbuttonStyle(palette),
+      textButtonTheme: TextButtonThemeData(style: _buttonStyle(palette)),
+      outlinedButtonTheme:
+          OutlinedButtonThemeData(style: _buttonStyle(palette)),
       floatingActionButtonTheme: _fabThemeData(palette),
     );
   }
@@ -155,25 +145,29 @@ class ThemeGeneratorSettings {
   TooltipThemeData _tooltipThemeData(PaletteData palette) {
     return TooltipThemeData(
       decoration: BoxDecoration(
-        color: palette.gray,
+        color: palette.gray.withOpacity(.75),
         borderRadius: BorderRadius.circular(4),
       ),
     );
   }
 
-  AppBarTheme _appBarTheme(PaletteData palette) {
+  AppBarTheme _appBarTheme(PaletteData palette, TextTheme textTheme) {
     return AppBarTheme(
       foregroundColor: palette.onSurface,
       backgroundColor: palette.surface,
       centerTitle: appBarCenterTitle,
       elevation: appBarElevation,
+      iconTheme: IconThemeData(color: palette.onSurface),
+      shadowColor: palette.brightness == Brightness.light
+          ? Colors.white70
+          : Colors.black45,
     );
   }
 
   TabBarTheme _tabBarTheme(PaletteData palette) {
     return TabBarTheme(
       labelColor: palette.primary,
-      unselectedLabelColor: palette.gray,
+      unselectedLabelColor: palette.gray.withOpacity(.75),
     );
   }
 
@@ -188,6 +182,16 @@ class ThemeGeneratorSettings {
       unselectedItemColor: palette.onSurface,
       selectedLabelStyle: textTheme.caption,
       unselectedLabelStyle: textTheme.caption,
+    );
+  }
+
+  ElevatedButtonThemeData _elevatedbuttonStyle(PaletteData palette) {
+    return ElevatedButtonThemeData(
+      style: _buttonStyle(palette).copyWith(
+        overlayColor: MaterialStateColor.resolveWith(
+          (states) => Colors.black.withOpacity(.25),
+        ),
+      ),
     );
   }
 

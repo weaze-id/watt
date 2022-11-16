@@ -17,25 +17,31 @@ class Watt extends StatelessWidget {
     Key? key,
     this.lightPalette,
     this.darkPalette,
-    this.settings,
+    this.data,
     required this.builder,
   }) : super(key: key);
 
   final PaletteData? lightPalette;
   final PaletteData? darkPalette;
-  final ThemeGeneratorSettings? settings;
-  final Widget Function(BuildContext context, ThemeGeneratorSettings settings)
-      builder;
+  final WattThemeData? data;
+  final Widget Function(
+      BuildContext context, ThemeData theme, ThemeData darkTheme) builder;
 
   @override
   Widget build(BuildContext context) {
-    final settings = this.settings ?? ThemeGeneratorSettings();
+    final data = this.data ?? WattThemeData();
     return Palette(
       lightPalette: lightPalette ?? PaletteData.kLightPalette,
       darkPalette: darkPalette ?? PaletteData.kDarkPalette,
-      child: ThemeGenerator(
-        settings: settings,
-        child: Builder(builder: (context) => builder(context, settings)),
+      child: WattTheme(
+        data: data,
+        child: Builder(
+          builder: (context) => builder(
+            context,
+            data.generate(context),
+            data.generateDark(context),
+          ),
+        ),
       ),
     );
   }

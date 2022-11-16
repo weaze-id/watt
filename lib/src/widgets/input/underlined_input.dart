@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../theme/theme_generator.dart';
+import '../../theme/watt_theme.dart';
 import 'input_base.dart';
 
 class UnderlinedInput extends StatelessWidget {
@@ -53,7 +53,7 @@ class UnderlinedInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeGeneratorSettings = ThemeGenerator.of(context);
+    final wattTheme = WattTheme.of(context);
     return InputBase(
       controller: controller,
       label: label,
@@ -80,7 +80,7 @@ class UnderlinedInput extends StatelessWidget {
             ? BorderSide(color: borderColor!)
             : const BorderSide(),
         borderRadius: BorderRadius.vertical(
-          top: Radius.circular(themeGeneratorSettings!.inputBorderRadius),
+          top: Radius.circular(wattTheme!.inputBorderRadius),
         ),
       ),
     );
