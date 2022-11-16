@@ -1,3 +1,39 @@
+## 0.5.0
+
+- Fix drawer background color
+- Fix bottom app bar background color
+- Rename ThemeGenerator to WattTheme
+- Rename DateUtil to DateFormatUtil
+- Rename NumberUtil to NumberFormatUtil
+- Change Watt builder property
+
+Before
+```dart
+return Watt(
+  builder: (context, settings) {
+    return MaterialApp(
+      title: "YOUR APP NAME",
+      theme: settings.generate(context),
+      darkTheme: settings.generateDark(context),
+      home: const HomePage(),
+    );
+  },
+),
+```
+After
+```dart
+return Watt(
+  builder: (context, theme, darkTheme) {
+    return MaterialApp(
+      title: "YOUR APP NAME",
+      theme: theme,
+      darkTheme: darkTheme,
+      home: const HomePage(),
+    );
+  },
+),
+```
+
 ## 0.4.0
 
 - Add input border color
