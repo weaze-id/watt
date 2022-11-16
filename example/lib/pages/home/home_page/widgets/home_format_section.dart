@@ -15,42 +15,42 @@ class HomeFormatSection extends StatelessWidget {
         ListTile(
           contentPadding: EdgeInsets.zero,
           title: const Text("DateTime standard"),
-          subtitle: Text(DateUtil.standard(DateTime.now())),
+          subtitle: Text(DateFormatUtil.standard(DateTime.now())),
         ),
         ListTile(
           contentPadding: EdgeInsets.zero,
           title: const Text("DateTime standard with hour"),
-          subtitle: Text(DateUtil.standardWithHour(DateTime.now())),
+          subtitle: Text(DateFormatUtil.standardWithHour(DateTime.now())),
         ),
         ListTile(
           contentPadding: EdgeInsets.zero,
           title: const Text("DateTime full"),
-          subtitle: Text(DateUtil.full(DateTime.now())),
+          subtitle: Text(DateFormatUtil.full(DateTime.now())),
         ),
         ListTile(
           contentPadding: EdgeInsets.zero,
           title: const Text("DateTime full with hour"),
-          subtitle: Text(DateUtil.fullWithHour(DateTime.now())),
+          subtitle: Text(DateFormatUtil.fullWithHour(DateTime.now())),
         ),
         ListTile(
           contentPadding: EdgeInsets.zero,
           title: const Text("DateTime compact"),
-          subtitle: Text(DateUtil.compact(DateTime.now())),
+          subtitle: Text(DateFormatUtil.compact(DateTime.now())),
         ),
         ListTile(
           contentPadding: EdgeInsets.zero,
           title: const Text("DateTime compact with hour"),
-          subtitle: Text(DateUtil.compactWithHour(DateTime.now())),
+          subtitle: Text(DateFormatUtil.compactWithHour(DateTime.now())),
         ),
         ListTile(
           contentPadding: EdgeInsets.zero,
           title: const Text("Number integer"),
-          subtitle: Text(NumberUtil.integer(10000.123)),
+          subtitle: Text(NumberFormatUtil.integer(10000.123)),
         ),
         ListTile(
           contentPadding: EdgeInsets.zero,
           title: const Text("Number currency"),
-          subtitle: Text(NumberUtil.currency(10000.123)),
+          subtitle: Text(NumberFormatUtil.currency(10000.123)),
         ),
       ],
     );
