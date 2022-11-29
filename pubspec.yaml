@@ -1,6 +1,6 @@
 name: watt
 description: Flutter prebuilt widgets and utils to make development faster
-version: 0.5.0
+version: 0.5.1
 repository: https://github.com/weaze-id/watt
 
 environment:
@@ -13,7 +13,7 @@ dependencies:
     sdk: flutter
   http: ^0.13.4
   intl: ^0.17.0
-  witt: ^0.6.0
+  witt: ^0.7.0
 
 dev_dependencies:
   flutter_test:

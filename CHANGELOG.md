@@ -1,3 +1,7 @@
+## 0.5.1
+
+- Upgrade witt version
+
 ## 0.5.0
 
 - Fix drawer background color
@@ -8,6 +12,7 @@
 - Change Watt builder property
 
 Before
+
 ```dart
 return Watt(
   builder: (context, settings) {
@@ -20,7 +25,9 @@ return Watt(
   },
 ),
 ```
+
 After
+
 ```dart
 return Watt(
   builder: (context, theme, darkTheme) {
