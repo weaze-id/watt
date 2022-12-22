@@ -7,7 +7,7 @@ class BigButton extends StatelessWidget {
     Key? key,
     this.icon,
     this.child,
-    required this.label,
+    this.label,
     required this.onPressed,
     this.primary,
     this.onPrimary,
@@ -15,7 +15,7 @@ class BigButton extends StatelessWidget {
 
   final Widget? icon;
   final Widget? child;
-  final String label;
+  final String? label;
   final void Function()? onPressed;
   final Color? primary;
   final Color? onPrimary;

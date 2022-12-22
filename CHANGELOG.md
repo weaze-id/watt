@@ -1,3 +1,7 @@
+## 0.6.0
+
+- Add more property to InfiniteScroll
+
 ## 0.5.1
 
 - Upgrade witt version

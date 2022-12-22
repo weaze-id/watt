@@ -5,13 +5,13 @@ import '../../theme/palette.dart';
 class ButtonChild extends StatelessWidget {
   const ButtonChild({
     Key? key,
-    required this.label,
+    this.label,
     this.onPrimary,
     this.icon,
     this.child,
   }) : super(key: key);
 
-  final String label;
+  final String? label;
   final Color? onPrimary;
   final Widget? icon;
   final Widget? child;
@@ -20,8 +20,8 @@ class ButtonChild extends StatelessWidget {
   Widget build(BuildContext context) {
     return child ??
         (icon != null
-            ? _IconAndLabel(onPrimary: onPrimary, icon: icon, label: label)
-            : Text(label));
+            ? _IconAndLabel(onPrimary: onPrimary, icon: icon!, label: label)
+            : Text(label ?? ""));
   }
 }
 
@@ -34,8 +34,8 @@ class _IconAndLabel extends StatelessWidget {
   }) : super(key: key);
 
   final Color? onPrimary;
-  final Widget? icon;
-  final String label;
+  final Widget icon;
+  final String? label;
 
   @override
   Widget build(BuildContext context) {
@@ -43,10 +43,12 @@ class _IconAndLabel extends StatelessWidget {
     return Row(children: [
       IconTheme(
         data: IconThemeData(color: onPrimary ?? palette.onPrimary),
-        child: icon!,
+        child: icon,
       ),
-      const SizedBox(width: 16),
-      Text(label),
+      if (label != null) ...[
+        const SizedBox(width: 16),
+        Text(label!),
+      ]
     ]);
   }
 }

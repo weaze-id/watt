@@ -7,14 +7,14 @@ class OutlinedBigButton extends StatelessWidget {
     Key? key,
     this.icon,
     this.child,
-    required this.label,
+    this.label,
     required this.onPressed,
     this.primary,
   }) : super(key: key);
 
   final Widget? icon;
   final Widget? child;
-  final String label;
+  final String? label;
   final void Function()? onPressed;
   final Color? primary;
 
