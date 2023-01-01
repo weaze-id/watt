@@ -13,6 +13,10 @@ class _InfiniteScrollPageState extends State<InfiniteScrollPage> {
   bool _enableLoad = true;
 
   Future<void> _onLoad(int index) async {
+    if (!mounted) {
+      return;
+    }
+
     await Future.delayed(const Duration(seconds: 3));
     setState(() => _itemCount += 25);
 

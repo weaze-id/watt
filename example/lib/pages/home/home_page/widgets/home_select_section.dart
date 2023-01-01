@@ -25,21 +25,42 @@ class _HomeSelectSectionState extends State<HomeSelectSection> {
           rowCrossAxisAlignment: CrossAxisAlignment.start,
           gap: 16,
           children: [
-            SelectList(
-              value: singleValue,
-              items: [SelectItem(title: "Male"), SelectItem(title: "Female")],
-              onChanged: (value) => setState(() => singleValue = value),
-            ),
-            MultiSelectList(
-              values: multiValue,
-              items: [
-                SelectItem(title: "Flutter"),
-                SelectItem(title: "ASP.NET Core"),
-                SelectItem(title: "PostgreSQL"),
-                SelectItem(title: "React.JS"),
-                SelectItem(title: "TailwindCSS"),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "Single Select",
+                  style: TextStyle(fontWeight: FontWeight.w500),
+                ),
+                SelectList(
+                  value: singleValue,
+                  items: [
+                    SelectItem(title: "Male"),
+                    SelectItem(title: "Female")
+                  ],
+                  onChanged: (value) => setState(() => singleValue = value),
+                ),
               ],
-              onChanged: (value) => setState(() => multiValue = value),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "Multi Select",
+                  style: TextStyle(fontWeight: FontWeight.w500),
+                ),
+                MultiSelectList(
+                  values: multiValue,
+                  items: [
+                    SelectItem(title: "Flutter"),
+                    SelectItem(title: "ASP.NET Core"),
+                    SelectItem(title: "PostgreSQL"),
+                    SelectItem(title: "React.JS"),
+                    SelectItem(title: "TailwindCSS"),
+                  ],
+                  onChanged: (value) => setState(() => multiValue = value),
+                ),
+              ],
             ),
           ],
         ),

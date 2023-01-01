@@ -18,16 +18,61 @@ class HomeColorPalettesSection extends StatelessWidget {
           columnCount: Breakpoints.value(context, sm: 1, md: 2, lg: 3),
           gap: 16,
           children: [
-            _ColorPalette(name: "Primary", color: palette.primary),
-            _ColorPalette(name: "Error", color: palette.error),
-            _ColorPalette(name: "Gray", color: palette.gray),
-            _ColorPalette(name: "Red", color: palette.red),
-            _ColorPalette(name: "Orange", color: palette.orange),
-            _ColorPalette(name: "Yellow", color: palette.yellow),
-            _ColorPalette(name: "Green", color: palette.green),
-            _ColorPalette(name: "Blue", color: palette.blue),
-            _ColorPalette(name: "Indigo", color: palette.indigo),
-            _ColorPalette(name: "Pink", color: palette.pink),
+            _ColorPalette(
+              name: "Primary",
+              backgroundColor: palette.primary,
+              foregroundColor: palette.onPrimary,
+            ),
+            _ColorPalette(
+              name: "Error",
+              backgroundColor: palette.error,
+              foregroundColor: palette.onError,
+            ),
+            _ColorPalette(
+              name: "Gray",
+              backgroundColor: palette.gray,
+              foregroundColor: palette.onGray,
+            ),
+            _ColorPalette(
+              name: "Red",
+              backgroundColor: palette.red,
+              foregroundColor: palette.onRed,
+            ),
+            _ColorPalette(
+              name: "Orange",
+              backgroundColor: palette.orange,
+              foregroundColor: palette.onOrange,
+            ),
+            _ColorPalette(
+              name: "Yellow",
+              backgroundColor: palette.yellow,
+              foregroundColor: palette.onYellow,
+            ),
+            _ColorPalette(
+              name: "Green",
+              backgroundColor: palette.green,
+              foregroundColor: palette.onGreen,
+            ),
+            _ColorPalette(
+              name: "Blue",
+              backgroundColor: palette.blue,
+              foregroundColor: palette.onBlue,
+            ),
+            _ColorPalette(
+              name: "Indigo",
+              backgroundColor: palette.indigo,
+              foregroundColor: palette.onIndigo,
+            ),
+            _ColorPalette(
+              name: "Pink",
+              backgroundColor: palette.pink,
+              foregroundColor: palette.onPink,
+            ),
+            _ColorPalette(
+              name: "Brown",
+              backgroundColor: palette.brown,
+              foregroundColor: palette.onBrown,
+            ),
           ],
         ),
       ],
@@ -39,11 +84,13 @@ class _ColorPalette extends StatelessWidget {
   const _ColorPalette({
     Key? key,
     required this.name,
-    required this.color,
+    required this.backgroundColor,
+    required this.foregroundColor,
   }) : super(key: key);
 
   final String name;
-  final MaterialColor color;
+  final MaterialColor backgroundColor;
+  final MaterialColor foregroundColor;
 
   @override
   Widget build(BuildContext context) {
@@ -52,16 +99,16 @@ class _ColorPalette extends StatelessWidget {
       children: [
         Row(
           children: [
-            _PaletteContainer(color[50]!),
-            _PaletteContainer(color[100]!),
-            _PaletteContainer(color[200]!),
-            _PaletteContainer(color[300]!),
-            _PaletteContainer(color[400]!),
-            _PaletteContainer(color),
-            _PaletteContainer(color[600]!),
-            _PaletteContainer(color[700]!),
-            _PaletteContainer(color[800]!),
-            _PaletteContainer(color[900]!),
+            _PaletteContainer("50", backgroundColor[50]!, foregroundColor),
+            _PaletteContainer("100", backgroundColor[100]!, foregroundColor),
+            _PaletteContainer("200", backgroundColor[200]!, foregroundColor),
+            _PaletteContainer("300", backgroundColor[300]!, foregroundColor),
+            _PaletteContainer("400", backgroundColor[400]!, foregroundColor),
+            _PaletteContainer("500", backgroundColor, foregroundColor),
+            _PaletteContainer("600", backgroundColor[600]!, foregroundColor),
+            _PaletteContainer("700", backgroundColor[700]!, foregroundColor),
+            _PaletteContainer("800", backgroundColor[800]!, foregroundColor),
+            _PaletteContainer("900", backgroundColor[900]!, foregroundColor),
           ],
         ),
         Text(name),
@@ -70,7 +117,19 @@ class _ColorPalette extends StatelessWidget {
     );
   }
 
-  Expanded _PaletteContainer(Color color) {
-    return Expanded(child: Container(color: color, height: 50));
+  Expanded _PaletteContainer(
+    String shade,
+    Color backgroundColor,
+    Color foregroundColor,
+  ) {
+    return Expanded(
+      child: Container(
+        color: backgroundColor,
+        height: 50,
+        child: Center(
+          child: Text(shade, style: TextStyle(color: foregroundColor)),
+        ),
+      ),
+    );
   }
 }
