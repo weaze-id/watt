@@ -1,3 +1,10 @@
+## 1.0.0
+
+- Upgrade witt to 1.0.0
+- Update example
+- Add brown color
+- All color in palette now have foreground property
+
 ## 0.6.0
 
 - Add more property to InfiniteScroll
