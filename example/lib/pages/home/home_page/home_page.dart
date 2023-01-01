@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final loaderState = WService.get<ValueNotifier<LoaderState>>();
+    final loaderState = WProvider.of<ValueNotifier<LoaderState>>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Example"),
@@ -43,7 +43,7 @@ class _ThemeModeChangebutton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeMode = WService.get<ValueNotifier<ThemeMode>>();
+    final themeMode = WProvider.of<ValueNotifier<ThemeMode>>(context);
     return WListener(
       notifier: themeMode,
       builder: (context) {

@@ -10,7 +10,7 @@ class HomeLoaderSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    final loaderState = WService.get<ValueNotifier<LoaderState>>();
+    final loaderState = WProvider.of<ValueNotifier<LoaderState>>(context);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
