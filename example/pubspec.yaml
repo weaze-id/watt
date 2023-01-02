@@ -13,7 +13,7 @@ dependencies:
     sdk: flutter
   flutter_secure_storage: ^5.0.2
   styled_text: ^5.1.0
-  witt: ^1.0.0
+  witt: ^1.1.0
   watt:
     path: ..
 

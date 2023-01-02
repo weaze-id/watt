@@ -1,3 +1,7 @@
+## 1.0.1
+
+- Upgrade witt to 1.1.0
+
 ## 1.0.0
 
 - Upgrade witt to 1.0.0

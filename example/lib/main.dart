@@ -9,15 +9,9 @@ void main() {
   runApp(
     WMultiProvider.builder(
       providers: [
-        WProvider(service: () => ValueNotifier(LoaderState.none)),
-        WProvider(service: () => ValueNotifier(ThemeMode.light)),
-        WProvider(service: () => const FlutterSecureStorage()),
-        WProvider(
-          service: () => HttpClient(
-            authenticationPath: "/",
-            userAgent: "Example",
-          ),
-        ),
+        WProvider(service: (context) => ValueNotifier(LoaderState.none)),
+        WProvider(service: (context) => ValueNotifier(ThemeMode.light)),
+        WProvider(service: (context) => const FlutterSecureStorage()),
       ],
       builder: (context) {
         final themeMode = WProvider.of<ValueNotifier<ThemeMode>>(context);
