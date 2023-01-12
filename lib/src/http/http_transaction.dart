@@ -35,10 +35,14 @@ class HttpTransaction {
     final statusCode = response.statusCode;
     if (statusCode == 401) {
       isUnauthorized = true;
+      return;
     }
 
-    if ((statusCode == 404 && !ignoreNotFound) ||
-        !HttpClient.isSuccess(response)) {
+    if (ignoreNotFound && statusCode == 404) {
+      return;
+    }
+
+    if (!HttpClient.isSuccess(response)) {
       errorMessage = response.body;
     }
   }
