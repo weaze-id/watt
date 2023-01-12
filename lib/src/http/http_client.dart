@@ -14,6 +14,7 @@ class HttpClient {
   final String authenticationPath;
   final String userAgent;
   final FutureOr<void> Function()? onTransactionStart;
+  final FutureOr<void> Function()? onTransactionEnd;
   final FutureOr<void> Function()? onTransactionNetworkError;
   final FutureOr<void> Function(Object, StackTrace)? onTransactionFailed;
 
@@ -21,6 +22,7 @@ class HttpClient {
     required this.authenticationPath,
     required this.userAgent,
     this.onTransactionStart,
+    this.onTransactionEnd,
     this.onTransactionNetworkError,
     this.onTransactionFailed,
   });
@@ -115,6 +117,7 @@ class HttpClient {
   Future<void> httpTransactionLoaderState({
     required ValueNotifier<LoaderState> loaderState,
     FutureOr<void> Function()? onTransactionStart,
+    FutureOr<void> Function()? onTransactionEnd,
     FutureOr<void> Function()? onTransactionNetworkError,
     FutureOr<void> Function(Object, StackTrace)? onTransactionFailed,
     required FutureOr<void> Function(HttpTransaction transaction) transaction,
@@ -124,6 +127,10 @@ class HttpClient {
       onTransactionStart: () {
         loaderState.value = LoaderState.loading;
         onTransactionStart?.call();
+      },
+      onTransactionEnd: () {
+        loaderState.value = LoaderState.none;
+        onTransactionEnd?.call();
       },
       onTransactionNetworkError: () {
         loaderState.value = LoaderState.noInternet;
@@ -141,6 +148,7 @@ class HttpClient {
     bool handleUnauthorized = true,
     bool showLoadingDialog = true,
     FutureOr<void> Function()? onTransactionStart,
+    FutureOr<void> Function()? onTransactionEnd,
     FutureOr<void> Function()? onTransactionNetworkError,
     FutureOr<void> Function(Object, StackTrace)? onTransactionFailed,
     required FutureOr<void> Function(HttpTransaction transaction) transaction,
@@ -186,6 +194,9 @@ class HttpClient {
       SnackbarUtil.showUnknownErrorSnackbar(e, stackTrace: stackTrace);
       return;
     }
+
+    await this.onTransactionEnd?.call();
+    await onTransactionEnd?.call();
   }
 
   Map<String, String> _createHeaders() {
