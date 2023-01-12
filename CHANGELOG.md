@@ -1,3 +1,7 @@
+## 1.0.2
+
+- Prevent get request show notfound error message
+
 ## 1.0.1
 
 - Upgrade witt to 1.1.0

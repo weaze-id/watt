@@ -31,13 +31,14 @@ class HttpTransaction {
     }
   }
 
-  void updateStatus(http.Response response) {
+  void updateStatus(http.Response response, {bool ignoreNotFound = false}) {
     final statusCode = response.statusCode;
     if (statusCode == 401) {
       isUnauthorized = true;
     }
 
-    if (!HttpClient.isSuccess(response)) {
+    if ((response.statusCode == 404 && !ignoreNotFound) ||
+        !HttpClient.isSuccess(response)) {
       errorMessage = response.body;
     }
   }

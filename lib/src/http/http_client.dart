@@ -13,17 +13,31 @@ import 'http_transaction.dart';
 class HttpClient {
   final String authenticationPath;
   final String userAgent;
+  final FutureOr<void> Function()? onTransactionStart;
+  final FutureOr<void> Function()? onTransactionNetworkError;
+  final FutureOr<void> Function(Object, StackTrace)? onTransactionFailed;
 
   HttpClient({
     required this.authenticationPath,
     required this.userAgent,
+    this.onTransactionStart,
+    this.onTransactionNetworkError,
+    this.onTransactionFailed,
   });
 
   String? bearerToken;
 
   Future<http.Response> get(String url, {HttpTransaction? transaction}) async {
-    final response = await http.get(Uri.parse(url), headers: _createHeaders());
-    transaction?.updateStatus(response);
+    final response = await http.get(
+      Uri.parse(url),
+      headers: _createHeaders(),
+    );
+
+    transaction?.updateStatus(
+      response,
+      ignoreNotFound: true,
+    );
+
     return response;
   }
 
@@ -61,8 +75,11 @@ class HttpClient {
     String url, {
     HttpTransaction? transaction,
   }) async {
-    final response =
-        await http.delete(Uri.parse(url), headers: _createHeaders());
+    final response = await http.delete(
+      Uri.parse(url),
+      headers: _createHeaders(),
+    );
+
     transaction?.updateStatus(response);
     return response;
   }
@@ -98,8 +115,7 @@ class HttpClient {
   Future<void> httpTransactionLoaderState({
     required ValueNotifier<LoaderState> loaderState,
     FutureOr<void> Function()? onTransactionStart,
-    FutureOr<void> Function()? onTransactionEnd,
-    FutureOr<void> Function()? onNetworkError,
+    FutureOr<void> Function()? onTransactionNetworkError,
     FutureOr<void> Function(Object, StackTrace)? onTransactionFailed,
     required FutureOr<void> Function(HttpTransaction transaction) transaction,
   }) async {
@@ -109,13 +125,9 @@ class HttpClient {
         loaderState.value = LoaderState.loading;
         onTransactionStart?.call();
       },
-      onTransactionEnd: () {
-        loaderState.value = LoaderState.none;
-        onTransactionEnd?.call();
-      },
-      onNetworkError: () {
+      onTransactionNetworkError: () {
         loaderState.value = LoaderState.noInternet;
-        onNetworkError?.call();
+        onTransactionNetworkError?.call();
       },
       onTransactionFailed: (e, stackTrace) {
         loaderState.value = LoaderState.unknownError;
@@ -129,8 +141,7 @@ class HttpClient {
     bool handleUnauthorized = true,
     bool showLoadingDialog = true,
     FutureOr<void> Function()? onTransactionStart,
-    FutureOr<void> Function()? onTransactionEnd,
-    FutureOr<void> Function()? onNetworkError,
+    FutureOr<void> Function()? onTransactionNetworkError,
     FutureOr<void> Function(Object, StackTrace)? onTransactionFailed,
     required FutureOr<void> Function(HttpTransaction transaction) transaction,
   }) async {
@@ -144,7 +155,9 @@ class HttpClient {
         handleUnauthorized: handleUnauthorized,
       );
 
+      await this.onTransactionStart?.call();
       await onTransactionStart?.call();
+
       await transaction(httpTransaction);
 
       if (showLoadingDialog) {
@@ -157,20 +170,22 @@ class HttpClient {
         WRouter.pop();
       }
 
+      await this.onTransactionNetworkError?.call();
+      await onTransactionNetworkError?.call();
+
       DialogUtil.showNoInternetDialog();
-      await onNetworkError?.call();
       return;
     } catch (e, stackTrace) {
       if (showLoadingDialog) {
         WRouter.pop();
       }
 
-      SnackbarUtil.showUnknownErrorSnackbar(e, stackTrace: stackTrace);
+      await this.onTransactionFailed?.call(e, stackTrace);
       await onTransactionFailed?.call(e, stackTrace);
+
+      SnackbarUtil.showUnknownErrorSnackbar(e, stackTrace: stackTrace);
       return;
     }
-
-    await onTransactionEnd?.call();
   }
 
   Map<String, String> _createHeaders() {
