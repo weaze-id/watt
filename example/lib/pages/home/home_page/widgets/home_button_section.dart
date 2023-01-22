@@ -22,6 +22,21 @@ class HomeButtonsSection extends StatelessWidget {
             BigButton(label: "Press me", onPressed: () {}),
             TextBigButton(label: "Press me", onPressed: () {}),
             OutlinedBigButton(label: "Press me", onPressed: () {}),
+            BigButton(
+              icon: const Icon(Icons.add),
+              label: "Press me",
+              onPressed: () {},
+            ),
+            TextBigButton(
+              icon: const Icon(Icons.add),
+              label: "Press me",
+              onPressed: () {},
+            ),
+            OutlinedBigButton(
+              icon: const Icon(Icons.add),
+              label: "Press me",
+              onPressed: () {},
+            ),
           ],
         )
       ],

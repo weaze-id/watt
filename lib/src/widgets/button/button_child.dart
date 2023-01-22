@@ -1,26 +1,28 @@
 import 'package:flutter/material.dart';
 
-import '../../theme/palette.dart';
-
 class ButtonChild extends StatelessWidget {
   const ButtonChild({
     Key? key,
     this.label,
-    this.onPrimary,
+    required this.iconColor,
     this.icon,
     this.child,
   }) : super(key: key);
 
   final String? label;
-  final Color? onPrimary;
   final Widget? icon;
+  final Color iconColor;
   final Widget? child;
 
   @override
   Widget build(BuildContext context) {
     return child ??
         (icon != null
-            ? _IconAndLabel(onPrimary: onPrimary, icon: icon!, label: label)
+            ? _IconAndLabel(
+                label: label,
+                icon: icon!,
+                iconColor: iconColor,
+              )
             : Text(label ?? ""));
   }
 }
@@ -28,27 +30,29 @@ class ButtonChild extends StatelessWidget {
 class _IconAndLabel extends StatelessWidget {
   const _IconAndLabel({
     Key? key,
-    required this.onPrimary,
-    required this.icon,
     required this.label,
+    required this.icon,
+    required this.iconColor,
   }) : super(key: key);
 
-  final Color? onPrimary;
-  final Widget icon;
   final String? label;
+  final Widget icon;
+  final Color iconColor;
 
   @override
   Widget build(BuildContext context) {
-    final palette = Palette.of(context);
-    return Row(children: [
-      IconTheme(
-        data: IconThemeData(color: onPrimary ?? palette.onPrimary),
-        child: icon,
-      ),
-      if (label != null) ...[
-        const SizedBox(width: 16),
-        Text(label!),
-      ]
-    ]);
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        IconTheme(
+          data: IconThemeData(color: iconColor),
+          child: icon,
+        ),
+        if (label != null) ...[
+          const SizedBox(width: 16),
+          Text(label!),
+        ]
+      ],
+    );
   }
 }

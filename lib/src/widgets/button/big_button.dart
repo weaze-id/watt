@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../watt.dart';
 import 'button_child.dart';
 
 class BigButton extends StatelessWidget {
@@ -22,6 +23,7 @@ class BigButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final palette = Palette.of(context);
     return SizedBox(
       height: 55,
       width: double.infinity,
@@ -33,7 +35,7 @@ class BigButton extends StatelessWidget {
         onPressed: onPressed,
         child: ButtonChild(
           label: label,
-          onPrimary: onPrimary,
+          iconColor: onPrimary ?? palette.onPrimary,
           icon: icon,
           child: child,
         ),
