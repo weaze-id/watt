@@ -1,3 +1,8 @@
+## 1.0.5
+
+- Fix palette data property name typo
+- Fix big button with icon not centered
+
 ## 1.0.4
 
 - Fix ignoreNotFound fail
