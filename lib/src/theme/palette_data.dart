@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 import '../utils/color_util.dart';
@@ -6,7 +5,7 @@ import '../utils/color_util.dart';
 class PaletteData {
   final MaterialColor primary;
   final MaterialColor secondary;
-  final MaterialColor tersiary;
+  final MaterialColor tertiary;
   final MaterialColor error;
   final MaterialColor surface;
   final MaterialColor background;
@@ -41,7 +40,7 @@ class PaletteData {
   const PaletteData({
     required this.primary,
     required this.secondary,
-    required this.tersiary,
+    required this.tertiary,
     required this.error,
     required this.surface,
     required this.background,
@@ -77,7 +76,7 @@ class PaletteData {
   PaletteData copyWith({
     MaterialColor? primary,
     MaterialColor? secondary,
-    MaterialColor? tersiary,
+    MaterialColor? tertiary,
     MaterialColor? error,
     MaterialColor? surface,
     MaterialColor? background,
@@ -112,7 +111,7 @@ class PaletteData {
     return PaletteData(
       primary: primary ?? this.primary,
       secondary: secondary ?? this.secondary,
-      tersiary: tersiary ?? this.tersiary,
+      tertiary: tertiary ?? this.tertiary,
       error: error ?? this.error,
       surface: surface ?? this.surface,
       background: background ?? this.background,
@@ -167,7 +166,7 @@ class PaletteData {
   static final kLightPalette = PaletteData(
     primary: ColorUtil.createMaterialColor(const Color(0xFF0078d7)),
     secondary: ColorUtil.createMaterialColor(const Color(0xFF0078d7)),
-    tersiary: ColorUtil.createMaterialColor(const Color(0xFF0078d7)),
+    tertiary: ColorUtil.createMaterialColor(const Color(0xFF0078d7)),
     error: ColorUtil.createMaterialColor(const Color(0xFFc62828)),
     surface: ColorUtil.createMaterialColor(Colors.white),
     background: ColorUtil.createMaterialColor(Colors.white),
@@ -190,8 +189,8 @@ class PaletteData {
     onRed: ColorUtil.createMaterialColor(Colors.white),
     onOrange: ColorUtil.createMaterialColor(const Color(0xFF323130)),
     onYellow: ColorUtil.createMaterialColor(const Color(0xFF323130)),
-    onGreen: ColorUtil.createMaterialColor(const Color(0xFF323130)),
-    onBlue: ColorUtil.createMaterialColor(const Color(0xFF323130)),
+    onGreen: ColorUtil.createMaterialColor(Colors.white),
+    onBlue: ColorUtil.createMaterialColor(Colors.white),
     onIndigo: ColorUtil.createMaterialColor(Colors.white),
     onPink: ColorUtil.createMaterialColor(Colors.white),
     onBrown: ColorUtil.createMaterialColor(Colors.white),
@@ -203,7 +202,7 @@ class PaletteData {
   static final kDarkPalette = PaletteData(
     primary: ColorUtil.createMaterialColor(const Color(0xFF80BCEB)),
     secondary: ColorUtil.createMaterialColor(const Color(0xFF80BCEB)),
-    tersiary: ColorUtil.createMaterialColor(const Color(0xFF80BCEB)),
+    tertiary: ColorUtil.createMaterialColor(const Color(0xFF80BCEB)),
     error: ColorUtil.createMaterialColor(const Color(0XFFEF9A9A)),
     surface: ColorUtil.createMaterialColor(const Color(0XFF1C1D22)),
     background: ColorUtil.createMaterialColor(const Color(0XFF1C1D22)),
