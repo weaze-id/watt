@@ -1,3 +1,7 @@
+## 1.1.0
+
+- Add custom http error handler
+
 ## 1.0.5
 
 - Fix palette data property name typo

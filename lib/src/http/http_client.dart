@@ -13,6 +13,7 @@ import 'http_transaction.dart';
 class HttpClient {
   final String authenticationPath;
   final String userAgent;
+  final FutureOr<void> Function(String errorResponse)? httpErrorHandler;
   final FutureOr<void> Function()? onTransactionStart;
   final FutureOr<void> Function()? onTransactionEnd;
   final FutureOr<void> Function()? onTransactionNetworkError;
@@ -21,6 +22,7 @@ class HttpClient {
   HttpClient({
     required this.authenticationPath,
     required this.userAgent,
+    this.httpErrorHandler,
     this.onTransactionStart,
     this.onTransactionEnd,
     this.onTransactionNetworkError,
@@ -123,6 +125,7 @@ class HttpClient {
     required FutureOr<void> Function(HttpTransaction transaction) transaction,
   }) async {
     return httpTransaction(
+      handleNoInternet: false,
       showLoadingDialog: false,
       onTransactionStart: () {
         loaderState.value = LoaderState.loading;
@@ -146,6 +149,7 @@ class HttpClient {
 
   Future<void> httpTransaction({
     bool handleUnauthorized = true,
+    bool handleNoInternet = true,
     bool showLoadingDialog = true,
     FutureOr<void> Function()? onTransactionStart,
     FutureOr<void> Function()? onTransactionEnd,
@@ -161,6 +165,7 @@ class HttpClient {
       final httpTransaction = HttpTransaction(
         authenticationPath: authenticationPath,
         handleUnauthorized: handleUnauthorized,
+        httpErrorHandler: httpErrorHandler,
       );
 
       await this.onTransactionStart?.call();
@@ -181,7 +186,10 @@ class HttpClient {
       await this.onTransactionNetworkError?.call();
       await onTransactionNetworkError?.call();
 
-      DialogUtil.showNoInternetDialog();
+      if (handleNoInternet) {
+        DialogUtil.showNoInternetDialog();
+      }
+
       return;
     } catch (e, stackTrace) {
       if (showLoadingDialog) {

@@ -1,34 +1,35 @@
-import 'dart:convert';
+import 'dart:async';
 
 import 'package:http/http.dart' as http;
 import 'package:witt/witt.dart';
 
-import '../constants/string_constants.dart';
-import '../utils/dialog_util.dart';
 import 'http_client.dart';
 
 class HttpTransaction {
   final bool handleUnauthorized;
   final String authenticationPath;
+  final FutureOr<void> Function(String errorResponse)? httpErrorHandler;
 
   HttpTransaction({
     required this.handleUnauthorized,
     required this.authenticationPath,
+    this.httpErrorHandler,
   });
 
   bool isUnauthorized = false;
-  String? errorMessage;
+  String? errorResponse;
 
-  void handleError() {
+  Future<void> handleError() async {
     if (isUnauthorized && handleUnauthorized) {
       WRouter.pushNamedAndRemoveAll(authenticationPath);
       return;
     }
 
-    if (errorMessage != null) {
-      _showHttpError();
-      return;
+    if (errorResponse != null) {
+      return httpErrorHandler?.call(errorResponse!);
     }
+
+    return;
   }
 
   void updateStatus(http.Response response, {bool ignoreNotFound = false}) {
@@ -43,51 +44,7 @@ class HttpTransaction {
     }
 
     if (!HttpClient.isSuccess(response)) {
-      errorMessage = response.body;
+      errorResponse = response.body;
     }
-  }
-
-  void _showHttpError() {
-    final dataMap = json.decode(errorMessage!);
-
-    final errors = dataMap["errors"];
-    if (errors != null) {
-      if (errors is String) {
-        DialogUtil.showAlertDialog(title: "Error", message: errors);
-        return;
-      }
-
-      final errorKeys = errors.keys.toList();
-      if (errorKeys.isNotEmpty) {
-        final firstError = errors[errorKeys[0]]![0];
-        if (firstError.isNotEmpty) {
-          DialogUtil.showAlertDialog(title: "Error", message: firstError);
-          return;
-        }
-      }
-    }
-
-    final message = dataMap["message"];
-    if (message != null && message is String) {
-      DialogUtil.showAlertDialog(title: "Error", message: message);
-      return;
-    }
-
-    final error = dataMap["error"];
-    if (error != null && error is String) {
-      DialogUtil.showAlertDialog(title: "Error", message: error);
-      return;
-    }
-
-    final data = dataMap["data"];
-    if (data != null && data is String) {
-      DialogUtil.showAlertDialog(title: "Error", message: data);
-      return;
-    }
-
-    DialogUtil.showAlertDialog(
-      title: "Error",
-      message: StringConstants.unknownError,
-    );
   }
 }
