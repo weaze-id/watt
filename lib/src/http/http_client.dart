@@ -177,7 +177,7 @@ class HttpClient {
         WRouter.pop();
       }
 
-      httpTransaction.handleError();
+      await httpTransaction.handleError();
     } on SocketException {
       if (showLoadingDialog) {
         WRouter.pop();

@@ -1,3 +1,7 @@
+## 1.1.1
+
+- Fix handle error not awaited
+
 ## 1.1.0
 
 - Add custom http error handler
