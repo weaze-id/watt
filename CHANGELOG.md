@@ -1,3 +1,10 @@
+## 1.2.0
+
+- Remove deprecated
+- Add grid builder
+- Update select list api
+- Show image on file input
+
 ## 1.1.1
 
 - Fix handle error not awaited

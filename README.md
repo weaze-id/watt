@@ -62,35 +62,38 @@ return Watt(
 ## Widgets
 
 - Buttons
-    - BigButton
-    - OutlinedBigButton
-    - TextBigButton
+  - BigButton
+  - OutlinedBigButton
+  - TextBigButton
 - Infinite scroll
 - Inputs
-    - FileInput
-    - FilledInput
-    - UnderlinedInput
-    - OutlinedInput
+  - FileInput
+  - FilledInput
+  - UnderlinedInput
+  - OutlinedInput
 - Loader
-    - LoaderNotifier
-    - Loader
+  - LoaderNotifier
+  - Loader
 - Message
-    - ErrorMessage
-    - NoDataMessage
-    - NoInternetMessage
-    - UnknownErrorMessage
+  - ErrorMessage
+  - NoDataMessage
+  - NoInternetMessage
+  - UnknownErrorMessage
 - Select
-    - SelectList
-    - MultiSelectList
-- StaticGrid
+  - SelectList
+  - MultiSelectList
+- Grid
+  - Static Grid
+  - Grid Builder
 - Utilities
-    - ColorUtil
-    - DateFormatUtil
-    - DialogUtil
-    - NumberFormatUtil
-    - SnackbarUtil
+  - ColorUtil
+  - DateFormatUtil
+  - DialogUtil
+  - NumberFormatUtil
+  - SnackbarUtil
 
 ## Additional Information
+
 This library is currently on experimental status and not ready for production. The API may change slightly when more features are added, and some use-cases may not be as simple as they could be.
 
 ## Contributing
