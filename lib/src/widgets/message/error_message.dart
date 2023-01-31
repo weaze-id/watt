@@ -36,7 +36,7 @@ class ErrorMessage extends StatelessWidget {
           children: [
             _ErrorIcon(icon: icon, primary: primary),
             const SizedBox(height: 16),
-            Text(title, style: textTheme.bodyText1),
+            Text(title, style: textTheme.bodyLarge),
             const SizedBox(height: 16),
             Text(
               message,

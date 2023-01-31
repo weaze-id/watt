@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../theme/watt_theme.dart';
+import '../../../watt.dart';
 import 'input_base.dart';
 
 class FilledInput extends StatelessWidget {
@@ -52,6 +52,8 @@ class FilledInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final wattTheme = WattTheme.of(context);
+    final palette = Palette.of(context);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -76,7 +78,7 @@ class FilledInput extends StatelessWidget {
           filled: true,
           iconColor: iconColor,
           hintColor: hintColor,
-          fillColor: fillColor,
+          fillColor: fillColor ?? palette.gray.withOpacity(.15),
           contentPadding: contentPadding,
           autofocus: autofocus,
           autocorrect: autocorrect,

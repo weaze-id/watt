@@ -38,10 +38,8 @@ class WattThemeData {
       fontFamily: fontFamily,
       colorScheme: palette.toColorScheme(),
       textTheme: textTheme,
-      primaryColor: palette.primary,
       indicatorColor: palette.primary,
       highlightColor: Colors.black.withOpacity(.25),
-      toggleableActiveColor: palette.primary,
       scaffoldBackgroundColor: palette.background,
       popupMenuTheme: PopupMenuThemeData(color: palette.surface),
       dialogBackgroundColor: palette.surface,
@@ -52,88 +50,132 @@ class WattThemeData {
       tabBarTheme: _tabBarTheme(palette),
       bottomAppBarTheme: BottomAppBarTheme(color: palette.surface),
       bottomNavigationBarTheme: _bottomNavBarThemeData(palette, textTheme),
+      navigationBarTheme: _navigationBarTheme(palette, textTheme),
       bottomSheetTheme: BottomSheetThemeData(backgroundColor: palette.surface),
       elevatedButtonTheme: _elevatedbuttonStyle(palette),
+      filledButtonTheme: FilledButtonThemeData(style: _buttonStyle(palette)),
       textButtonTheme: TextButtonThemeData(style: _buttonStyle(palette)),
       outlinedButtonTheme:
           OutlinedButtonThemeData(style: _buttonStyle(palette)),
       floatingActionButtonTheme: _fabThemeData(palette),
+      switchTheme: SwitchThemeData(
+        thumbColor: MaterialStateProperty.resolveWith<Color?>((states) {
+          if (states.contains(MaterialState.disabled)) {
+            return null;
+          }
+          if (states.contains(MaterialState.selected)) {
+            return palette.primary;
+          }
+          return null;
+        }),
+        trackColor: MaterialStateProperty.resolveWith<Color?>((states) {
+          if (states.contains(MaterialState.disabled)) {
+            return null;
+          }
+          if (states.contains(MaterialState.selected)) {
+            return palette.primary;
+          }
+          return null;
+        }),
+      ),
+      radioTheme: RadioThemeData(
+        fillColor: MaterialStateProperty.resolveWith<Color?>((states) {
+          if (states.contains(MaterialState.disabled)) {
+            return null;
+          }
+          if (states.contains(MaterialState.selected)) {
+            return palette.primary;
+          }
+          return null;
+        }),
+      ),
+      checkboxTheme: CheckboxThemeData(
+        fillColor: MaterialStateProperty.resolveWith<Color?>((states) {
+          if (states.contains(MaterialState.disabled)) {
+            return null;
+          }
+          if (states.contains(MaterialState.selected)) {
+            return palette.primary;
+          }
+          return null;
+        }),
+      ),
     );
   }
 
   TextTheme _textTheme(String fontFamily) {
     return TextTheme(
-      headline1: TextStyle(
+      displayLarge: TextStyle(
         fontFamily: fontFamily,
         fontSize: 96,
         fontWeight: FontWeight.w300,
         letterSpacing: -1.5,
       ),
-      headline2: TextStyle(
+      displayMedium: TextStyle(
         fontFamily: fontFamily,
         fontSize: 60,
         fontWeight: FontWeight.w300,
         letterSpacing: -0.5,
       ),
-      headline3: TextStyle(
+      displaySmall: TextStyle(
         fontFamily: fontFamily,
         fontSize: 48,
         fontWeight: FontWeight.w400,
       ),
-      headline4: TextStyle(
+      headlineMedium: TextStyle(
         fontFamily: fontFamily,
         fontSize: 34,
         fontWeight: FontWeight.w400,
         letterSpacing: 0.25,
       ),
-      headline5: TextStyle(
+      headlineSmall: TextStyle(
         fontFamily: fontFamily,
         fontSize: 24,
         fontWeight: FontWeight.w400,
       ),
-      headline6: TextStyle(
+      titleLarge: TextStyle(
         fontFamily: fontFamily,
         fontSize: 20,
         fontWeight: FontWeight.w500,
         letterSpacing: 0.15,
       ),
-      subtitle1: TextStyle(
+      titleMedium: TextStyle(
         fontFamily: fontFamily,
         fontSize: 16,
         fontWeight: FontWeight.w400,
         letterSpacing: 0.15,
       ),
-      subtitle2: TextStyle(
+      titleSmall: TextStyle(
         fontFamily: fontFamily,
         fontSize: 14,
         fontWeight: FontWeight.w500,
         letterSpacing: 0.1,
       ),
-      bodyText1: TextStyle(
+      bodyLarge: TextStyle(
         fontFamily: fontFamily,
         fontSize: 16,
         fontWeight: FontWeight.w400,
         letterSpacing: 0.5,
       ),
-      bodyText2: TextStyle(
+      bodyMedium: TextStyle(
         fontFamily: fontFamily,
         fontSize: 14,
         fontWeight: FontWeight.w400,
         letterSpacing: 0.25,
       ),
-      button: TextStyle(
-        fontFamily: fontFamily,
-        fontSize: 14,
-        fontWeight: FontWeight.w500,
-        letterSpacing: 1.25,
-      ),
-      caption: TextStyle(
+      bodySmall: TextStyle(
         fontFamily: fontFamily,
         fontSize: 12,
         fontWeight: FontWeight.w400,
         letterSpacing: 0.4,
       ),
-      overline: TextStyle(
+      labelLarge: TextStyle(
+        fontFamily: fontFamily,
+        fontSize: 14,
+        fontWeight: FontWeight.w500,
+        letterSpacing: 1.25,
+      ),
+      labelSmall: TextStyle(
         fontFamily: fontFamily,
         fontSize: 10,
         fontWeight: FontWeight.w400,
@@ -178,10 +220,24 @@ class WattThemeData {
     return BottomNavigationBarThemeData(
       type: BottomNavigationBarType.fixed,
       backgroundColor: palette.surface,
-      selectedItemColor: palette.onSurface,
+      selectedItemColor: palette.primary,
       unselectedItemColor: palette.onSurface,
-      selectedLabelStyle: textTheme.caption,
-      unselectedLabelStyle: textTheme.caption,
+      selectedLabelStyle: textTheme.bodySmall,
+      unselectedLabelStyle: textTheme.bodySmall,
+    );
+  }
+
+  NavigationBarThemeData _navigationBarTheme(
+    PaletteData palette,
+    TextTheme textTheme,
+  ) {
+    return NavigationBarThemeData(
+      labelTextStyle: MaterialStateProperty.resolveWith<TextStyle?>((states) {
+        return textTheme.labelMedium?.copyWith(color: palette.onSurface);
+      }),
+      iconTheme: MaterialStateProperty.resolveWith<IconThemeData?>((states) {
+        return IconThemeData(color: palette.onSurface);
+      }),
     );
   }
 
