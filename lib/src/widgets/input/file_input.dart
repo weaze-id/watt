@@ -1,28 +1,34 @@
+import 'dart:io';
+
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:witt/witt.dart';
 
-import '../../theme/palette.dart';
-import '../button/big_button.dart';
+import '../../../watt.dart';
 
 class FileInput extends StatelessWidget {
   const FileInput({
     Key? key,
     this.label,
-    required this.values,
-    required this.onChanged,
+    this.emptyMessage,
     this.fileType = FileType.any,
     this.allowedExtensions,
+    required this.values,
+    required this.onChanged,
     this.allowMultiple = false,
   }) : super(key: key);
 
   final String? label;
-  final List<PlatformFile> values;
-  final void Function(List<PlatformFile> value) onChanged;
+  final String? emptyMessage;
   final FileType fileType;
   final List<String>? allowedExtensions;
+  final List<PlatformFile> values;
+  final void Function(List<PlatformFile> value) onChanged;
   final bool allowMultiple;
 
   Future<void> _pickFile() async {
+    DialogUtil.showLoadingDialog();
+
     final result = await FilePicker.platform.pickFiles(
       type: fileType,
       allowedExtensions: allowedExtensions,
@@ -30,6 +36,7 @@ class FileInput extends StatelessWidget {
     );
 
     if (result == null) {
+      WRouter.pop();
       return;
     }
 
@@ -47,6 +54,7 @@ class FileInput extends StatelessWidget {
     }
 
     onChanged(newValues);
+    WRouter.pop();
   }
 
   void _removeFile(PlatformFile file) {
@@ -72,7 +80,12 @@ class FileInput extends StatelessWidget {
     }
 
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        if (children.isEmpty) ...[
+          Text(emptyMessage ?? "No file selected"),
+          const SizedBox(height: 16)
+        ],
         ...children,
         BigButton(label: label ?? "Select file", onPressed: _pickFile),
       ],
@@ -111,15 +124,19 @@ class _FileListTile extends StatelessWidget {
     final isDocument = ["pdf", "doc", "docx", "odt", "txt"].contains(extension);
 
     return ListTile(
-      leading: Icon(
-        isImage
-            ? Icons.image
-            : isVideo
-                ? Icons.movie
-                : isDocument
-                    ? Icons.description
-                    : Icons.attachment,
-        color: palette.primary,
+      leading: CircleAvatar(
+        backgroundColor: palette.gray.withOpacity(.25),
+        backgroundImage: isImage ? FileImage(File(file.path!)) : null,
+        child: !isImage
+            ? Icon(
+                isVideo
+                    ? Icons.movie
+                    : isDocument
+                        ? Icons.description
+                        : Icons.attachment,
+                color: palette.primary,
+              )
+            : null,
       ),
       title: Text(
         file.name,
