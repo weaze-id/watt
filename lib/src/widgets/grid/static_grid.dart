@@ -10,6 +10,7 @@ class StaticGrid extends StatelessWidget {
     this.columnCrossAxisAlignment = CrossAxisAlignment.center,
     this.rowMainAxisAlignment = MainAxisAlignment.start,
     this.rowCrossAxisAlignment = CrossAxisAlignment.center,
+    this.expanded = false,
     required this.children,
   }) : super(key: key);
 
@@ -20,6 +21,7 @@ class StaticGrid extends StatelessWidget {
   final CrossAxisAlignment columnCrossAxisAlignment;
   final MainAxisAlignment rowMainAxisAlignment;
   final CrossAxisAlignment rowCrossAxisAlignment;
+  final bool expanded;
   final List<Widget> children;
 
   @override
@@ -36,18 +38,17 @@ class StaticGrid extends StatelessWidget {
 
   List<Widget> _createRows() {
     final List<Widget> rows = [];
-    final childrenLength = children.length;
-    final rowCount = (childrenLength / columnCount).ceil();
+    final rowCount = (children.length / columnCount).ceil();
 
     for (int rowIndex = 0; rowIndex < rowCount; rowIndex++) {
-      final List<Widget> columns = _createCells(rowIndex);
-      rows.add(
-        Row(
-          crossAxisAlignment: rowCrossAxisAlignment,
-          mainAxisAlignment: rowMainAxisAlignment,
-          children: columns,
-        ),
+      final row = Row(
+        crossAxisAlignment: rowCrossAxisAlignment,
+        mainAxisAlignment: rowMainAxisAlignment,
+        children: _createCells(rowIndex),
       );
+
+      rows.add(expanded ? Expanded(child: row) : row);
+
       if (rowIndex != rowCount - 1) {
         rows.add(SizedBox(height: gap));
       }
@@ -58,11 +59,9 @@ class StaticGrid extends StatelessWidget {
 
   List<Widget> _createCells(int rowIndex) {
     final List<Widget> columns = [];
-    final childrenLength = children.length;
-
     for (int columnIndex = 0; columnIndex < columnCount; columnIndex++) {
       final cellIndex = rowIndex * columnCount + columnIndex;
-      if (cellIndex <= childrenLength - 1) {
+      if (cellIndex <= children.length - 1) {
         columns.add(Expanded(child: children[cellIndex]));
       } else {
         columns.add(Expanded(child: Container()));
