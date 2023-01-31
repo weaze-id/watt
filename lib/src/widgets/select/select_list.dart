@@ -1,30 +1,74 @@
 import 'package:flutter/material.dart';
 
+import '../../theme/palette.dart';
 import 'select_item.dart';
-import 'select_list_base.dart';
 
-class SelectList extends StatelessWidget {
+class SelectList<T> extends StatelessWidget {
   const SelectList({
     Key? key,
     this.contentPadding,
-    required this.value,
-    required this.items,
-    required this.onChanged,
-  }) : super(key: key);
+    required this.selected,
+    required this.selections,
+    required this.onSelectionChanged,
+    this.multiSelectionEnabled = false,
+  })  : assert((multiSelectionEnabled && selected.length > 0) ||
+            (!multiSelectionEnabled && selected.length == 1)),
+        super(key: key);
 
   final EdgeInsetsGeometry? contentPadding;
-  final int? value;
-  final List<SelectItem> items;
-  final void Function(int value) onChanged;
+  final List<SelectItem<T>> selections;
+  final Set<T> selected;
+  final void Function(Set<T> values) onSelectionChanged;
+  final bool multiSelectionEnabled;
+
+  _onSelect(T value) {
+    final newValues = {...selected};
+    if (multiSelectionEnabled) {
+      final isAny = newValues.any((e) => e == value);
+      if (isAny && newValues.length != 1) {
+        newValues.removeWhere((e) => e == value);
+      } else {
+        newValues.add(value);
+      }
+
+      onSelectionChanged(newValues);
+      return;
+    }
+
+    newValues.clear();
+    newValues.add(value);
+
+    onSelectionChanged(newValues);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return SelectListBase(
-      contentPadding: contentPadding,
-      values: value != null ? [value!] : [],
-      items: items,
-      onChanged: (values) => onChanged.call(values.first),
-      multipleSelect: false,
+    final palette = Palette.of(context);
+    return Column(
+      children: selections
+          .map(
+            (e) => ListTile(
+              contentPadding: contentPadding,
+              leading: e.leading,
+              title: Text(
+                e.title,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+              ),
+              subtitle: e.subtitle != null
+                  ? Text(
+                      e.subtitle!,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    )
+                  : null,
+              trailing: selected.any((el) => el == e.value)
+                  ? Icon(Icons.check, color: palette.primary)
+                  : null,
+              onTap: () => _onSelect(e.value),
+            ),
+          )
+          .toList(),
     );
   }
 }
