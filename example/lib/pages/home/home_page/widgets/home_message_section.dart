@@ -10,7 +10,7 @@ class HomeMessagesSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Messages", style: textTheme.headline6),
+        Text("Messages", style: textTheme.titleLarge),
         const SizedBox(height: 16),
         StaticGrid(
           columnCount: Breakpoints.value(context, sm: 1, md: 2, lg: 3),

@@ -12,7 +12,7 @@ class HomeColorPalettesSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Palette", style: textTheme.headline6),
+        Text("Palette", style: textTheme.titleLarge),
         const SizedBox(height: 16),
         StaticGrid(
           columnCount: Breakpoints.value(context, sm: 1, md: 2, lg: 3),

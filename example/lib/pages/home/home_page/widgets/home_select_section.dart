@@ -9,8 +9,8 @@ class HomeSelectSection extends StatefulWidget {
 }
 
 class _HomeSelectSectionState extends State<HomeSelectSection> {
-  int singleValue = 0;
-  List<int> multiValue = [];
+  Set<String> singleValue = <String>{"Male"};
+  Set<String> multiValue = <String>{"Flutter"};
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class _HomeSelectSectionState extends State<HomeSelectSection> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Select", style: textTheme.headline6),
+        Text("Select", style: textTheme.titleLarge),
         const SizedBox(height: 16),
         StaticGrid(
           columnCount: Breakpoints.value(context, sm: 1, md: 2),
@@ -33,12 +33,13 @@ class _HomeSelectSectionState extends State<HomeSelectSection> {
                   style: TextStyle(fontWeight: FontWeight.w500),
                 ),
                 SelectList(
-                  value: singleValue,
-                  items: [
-                    SelectItem(title: "Male"),
-                    SelectItem(title: "Female")
+                  selected: singleValue,
+                  selections: [
+                    SelectItem(title: "Male", value: "Male"),
+                    SelectItem(title: "Female", value: "Female")
                   ],
-                  onChanged: (value) => setState(() => singleValue = value),
+                  onSelectionChanged: (Set<String> value) =>
+                      setState(() => singleValue = value),
                 ),
               ],
             ),
@@ -49,16 +50,18 @@ class _HomeSelectSectionState extends State<HomeSelectSection> {
                   "Multi Select",
                   style: TextStyle(fontWeight: FontWeight.w500),
                 ),
-                MultiSelectList(
-                  values: multiValue,
-                  items: [
-                    SelectItem(title: "Flutter"),
-                    SelectItem(title: "ASP.NET Core"),
-                    SelectItem(title: "PostgreSQL"),
-                    SelectItem(title: "React.JS"),
-                    SelectItem(title: "TailwindCSS"),
+                SelectList(
+                  selected: multiValue,
+                  selections: [
+                    SelectItem(title: "Flutter", value: "Flutter"),
+                    SelectItem(title: "ASP.NET Core", value: "ASP.NET Core"),
+                    SelectItem(title: "PostgreSQL", value: "PostgreSQL"),
+                    SelectItem(title: "React.JS", value: "React.JS"),
+                    SelectItem(title: "TailwindCSS", value: "TailwindCSS"),
                   ],
-                  onChanged: (value) => setState(() => multiValue = value),
+                  onSelectionChanged: (Set<String> value) =>
+                      setState(() => multiValue = value),
+                  multiSelectionEnabled: true,
                 ),
               ],
             ),

@@ -10,7 +10,7 @@ class HomeFormatSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Formats", style: textTheme.headline6),
+        Text("Formats", style: textTheme.titleLarge),
         const SizedBox(height: 16),
         ListTile(
           contentPadding: EdgeInsets.zero,

@@ -15,7 +15,7 @@ class HomeLoaderSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Loader", style: textTheme.headline6),
+        Text("Loader", style: textTheme.titleLarge),
         const SizedBox(height: 16),
         ElevatedButton(
           onPressed: () {
