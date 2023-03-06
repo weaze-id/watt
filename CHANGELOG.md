@@ -1,3 +1,7 @@
+## 1.3.1
+
+- Fix http transaction error handler not working
+
 ## 1.3.0
 
 - Change http transaction error handler behavior
