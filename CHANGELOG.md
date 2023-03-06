@@ -1,3 +1,8 @@
+## 1.3.0
+
+- Change http transaction error handler behavior
+- Add hour format
+
 ## 1.2.0
 
 - Remove deprecated
