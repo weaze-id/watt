@@ -24,4 +24,8 @@ class DateFormatUtil {
   static String compactWithHour(DateTime value) {
     return DateFormat("dd/MM/yyyy hh:mm a").format(value);
   }
+
+  static String hour(DateTime value) {
+    return DateFormat("hh:mm a").format(value);
+  }
 }
