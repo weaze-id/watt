@@ -11,18 +11,19 @@ import '../widgets/loader/loader_state.dart';
 import 'http_transaction.dart';
 
 class HttpClient {
-  final String authenticationPath;
   final String userAgent;
-  final FutureOr<void> Function(String errorResponse)? httpErrorHandler;
+  final FutureOr<void> Function(
+    bool handleUnauthenticated,
+    http.Response response,
+  ) httpErrorHandler;
   final FutureOr<void> Function()? onTransactionStart;
   final FutureOr<void> Function()? onTransactionEnd;
   final FutureOr<void> Function()? onTransactionNetworkError;
   final FutureOr<void> Function(Object, StackTrace)? onTransactionFailed;
 
   HttpClient({
-    required this.authenticationPath,
     required this.userAgent,
-    this.httpErrorHandler,
+    required this.httpErrorHandler,
     this.onTransactionStart,
     this.onTransactionEnd,
     this.onTransactionNetworkError,
@@ -31,7 +32,16 @@ class HttpClient {
 
   String? bearerToken;
 
-  Future<http.Response> get(String url, {HttpTransaction? transaction}) async {
+  Future<http.Response?> get(
+    String url, {
+    bool ignoreNotFound = true,
+    bool stopOnFailure = true,
+    HttpTransaction? transaction,
+  }) async {
+    if (transaction?.isFailure ?? false) {
+      return null;
+    }
+
     final response = await http.get(
       Uri.parse(url),
       headers: _createHeaders(),
@@ -39,62 +49,102 @@ class HttpClient {
 
     transaction?.updateStatus(
       response,
-      ignoreNotFound: true,
+      ignoreNotFound: ignoreNotFound,
+      stopOnFailure: stopOnFailure,
     );
 
     return response;
   }
 
-  Future<http.Response> post(
+  Future<http.Response?> post(
     String url,
     String? data, {
+    bool ignoreNotFound = false,
+    bool stopOnFailure = true,
     HttpTransaction? transaction,
   }) async {
+    if (transaction?.isFailure ?? false) {
+      return null;
+    }
+
     final response = await http.post(
       Uri.parse(url),
       body: data,
       headers: _createHeaders(),
     );
 
-    transaction?.updateStatus(response);
+    transaction?.updateStatus(
+      response,
+      ignoreNotFound: ignoreNotFound,
+      stopOnFailure: stopOnFailure,
+    );
+
     return response;
   }
 
-  Future<http.Response> put(
+  Future<http.Response?> put(
     String url,
     String? data, {
+    bool ignoreNotFound = false,
+    bool stopOnFailure = true,
     HttpTransaction? transaction,
   }) async {
+    if (transaction?.isFailure ?? false) {
+      return null;
+    }
+
     final response = await http.put(
       Uri.parse(url),
       body: data,
       headers: _createHeaders(),
     );
 
-    transaction?.updateStatus(response);
+    transaction?.updateStatus(
+      response,
+      ignoreNotFound: ignoreNotFound,
+      stopOnFailure: stopOnFailure,
+    );
+
     return response;
   }
 
-  Future<http.Response> delete(
+  Future<http.Response?> delete(
     String url, {
+    bool ignoreNotFound = false,
+    bool stopOnFailure = true,
     HttpTransaction? transaction,
   }) async {
+    if (transaction?.isFailure ?? false) {
+      return null;
+    }
+
     final response = await http.delete(
       Uri.parse(url),
       headers: _createHeaders(),
     );
 
-    transaction?.updateStatus(response);
+    transaction?.updateStatus(
+      response,
+      ignoreNotFound: ignoreNotFound,
+      stopOnFailure: stopOnFailure,
+    );
+
     return response;
   }
 
-  Future<http.Response> multiPartPost(
+  Future<http.Response?> multiPartPost(
     String url, {
+    String fileFieldName = "file",
     Map<String, String>? fields,
     List<String>? filePaths,
-    String fileFieldName = "file",
+    bool ignoreNotFound = false,
+    bool stopOnFailure = true,
     HttpTransaction? transaction,
   }) async {
+    if (transaction?.isFailure ?? false) {
+      return null;
+    }
+
     final request = http.MultipartRequest("POST", Uri.parse(url));
     request.headers.addAll(_createHeaders());
 
@@ -112,7 +162,12 @@ class HttpClient {
     final streamedResponse = await request.send();
     final response = await http.Response.fromStream(streamedResponse);
 
-    transaction?.updateStatus(response);
+    transaction?.updateStatus(
+      response,
+      ignoreNotFound: ignoreNotFound,
+      stopOnFailure: stopOnFailure,
+    );
+
     return response;
   }
 
@@ -148,7 +203,7 @@ class HttpClient {
   }
 
   Future<void> httpTransaction({
-    bool handleUnauthorized = true,
+    bool handleUnauthenticated = true,
     bool handleNoInternet = true,
     bool showLoadingDialog = true,
     FutureOr<void> Function()? onTransactionStart,
@@ -163,8 +218,7 @@ class HttpClient {
       }
 
       final httpTransaction = HttpTransaction(
-        authenticationPath: authenticationPath,
-        handleUnauthorized: handleUnauthorized,
+        handleUnauthenticated: handleUnauthenticated,
         httpErrorHandler: httpErrorHandler,
       );
 
