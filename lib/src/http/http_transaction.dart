@@ -44,6 +44,6 @@ class HttpTransaction {
       isFailure = true;
     }
 
-    response = response;
+    this.response = response;
   }
 }
