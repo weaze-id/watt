@@ -1,3 +1,7 @@
+## 1.4.0
+
+- Add SliverInfiniteScroll
+
 ## 1.3.1
 
 - Fix http transaction error handler not working
