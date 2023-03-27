@@ -5,18 +5,24 @@ import 'package:flutter/material.dart';
 class InfiniteScroll extends StatefulWidget {
   const InfiniteScroll({
     Key? key,
+    this.primary,
+    this.cacheExtent,
+    this.keyboardDismissBehavior = ScrollViewKeyboardDismissBehavior.manual,
     this.scrollDirection = Axis.vertical,
     this.reverse = false,
     this.controller,
     this.physics,
     this.padding,
-    required this.onLoad,
     required this.enableLoad,
     required this.itemCount,
+    required this.onLoad,
     required this.itemBuilder,
     this.separatorBuilder,
   }) : super(key: key);
 
+  final bool? primary;
+  final double? cacheExtent;
+  final ScrollViewKeyboardDismissBehavior keyboardDismissBehavior;
   final Axis scrollDirection;
   final bool reverse;
   final ScrollController? controller;
@@ -58,6 +64,9 @@ class _InfiniteScrollState extends State<InfiniteScroll> {
   Widget build(BuildContext context) {
     if (widget.separatorBuilder != null) {
       return ListView.separated(
+        primary: widget.primary,
+        cacheExtent: widget.cacheExtent,
+        keyboardDismissBehavior: widget.keyboardDismissBehavior,
         scrollDirection: widget.scrollDirection,
         reverse: widget.reverse,
         controller: widget.controller,
@@ -70,6 +79,9 @@ class _InfiniteScrollState extends State<InfiniteScroll> {
     }
 
     return ListView.builder(
+      primary: widget.primary,
+      cacheExtent: widget.cacheExtent,
+      keyboardDismissBehavior: widget.keyboardDismissBehavior,
       scrollDirection: widget.scrollDirection,
       reverse: widget.reverse,
       controller: widget.controller,
