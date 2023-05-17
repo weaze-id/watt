@@ -19,6 +19,7 @@ class FilledInput extends StatelessWidget {
     this.onSaved,
     this.onChanged,
     this.onFieldSubmitted,
+    this.cursorColor,
     this.iconColor,
     this.labelColor,
     this.hintColor,
@@ -41,6 +42,7 @@ class FilledInput extends StatelessWidget {
   final void Function(String?)? onSaved;
   final void Function(String?)? onChanged;
   final void Function(String?)? onFieldSubmitted;
+  final Color? cursorColor;
   final Color? iconColor;
   final Color? labelColor;
   final Color? hintColor;
@@ -63,6 +65,7 @@ class FilledInput extends StatelessWidget {
         ],
         InputBase(
           controller: controller,
+          cursorColor: cursorColor,
           label: null,
           hint: hint,
           initialValue: initialValue,
@@ -84,9 +87,7 @@ class FilledInput extends StatelessWidget {
           autocorrect: autocorrect,
           border: OutlineInputBorder(
             borderSide: BorderSide.none,
-            borderRadius: BorderRadius.circular(
-              wattTheme!.inputBorderRadius,
-            ),
+            borderRadius: BorderRadius.circular(wattTheme!.inputBorderRadius),
           ),
         ),
       ],

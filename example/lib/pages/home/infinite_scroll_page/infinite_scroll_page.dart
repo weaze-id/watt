@@ -29,13 +29,27 @@ class _InfiniteScrollPageState extends State<InfiniteScrollPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Infinite scroll")),
-      body: InfiniteScroll(
-        itemCount: _itemCount,
-        enableLoad: _enableLoad,
-        onLoad: (index) => _onLoad(index),
-        itemBuilder: (context, index) => ListTile(
-          title: Text("Item ${index + 1}"),
-        ),
+      body: CustomScrollView(
+        slivers: [
+          // SliverAppBar(title: Text("Hwllo World")),
+          SliverToBoxAdapter(
+            child: StaticGrid(children: [
+              ElevatedButton(onPressed: () {}, child: Text("Hello")),
+              ElevatedButton(onPressed: () {}, child: Text("Hello")),
+              ElevatedButton(onPressed: () {}, child: Text("Hello")),
+              ElevatedButton(onPressed: () {}, child: Text("Hello")),
+              ElevatedButton(onPressed: () {}, child: Text("Hello")),
+            ]),
+          ),
+          SliverInfiniteScroll(
+            enableLoad: _enableLoad,
+            itemCount: _itemCount,
+            onLoad: _onLoad,
+            itemBuilder: (context, index) => ListTile(
+              title: Text(index.toString()),
+            ),
+          )
+        ],
       ),
     );
   }

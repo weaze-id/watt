@@ -1,3 +1,10 @@
+## 1.5.0
+
+- Add focusedBorderColor to input field
+- Add enabledBorderColor to input field
+- Add labelColor to input field
+- Add cursorColor to input field
+
 ## 1.4.0
 
 - Add SliverInfiniteScroll

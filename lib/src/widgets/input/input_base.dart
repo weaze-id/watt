@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../watt.dart';
+
 class InputBase extends StatefulWidget {
   const InputBase({
     Key? key,
@@ -19,10 +21,14 @@ class InputBase extends StatefulWidget {
     this.autofocus = false,
     this.autocorrect = false,
     required this.filled,
+    this.cursorColor,
     this.iconColor,
+    this.labelColor,
     this.hintColor,
-    required this.fillColor,
-    required this.border,
+    this.fillColor,
+    this.enabledBorderColor,
+    this.focusedBorderColor,
+    this.border,
     required this.contentPadding,
   }) : super(key: key);
 
@@ -42,9 +48,13 @@ class InputBase extends StatefulWidget {
   final bool autofocus;
   final bool autocorrect;
   final bool? filled;
+  final Color? cursorColor;
   final Color? iconColor;
+  final Color? labelColor;
   final Color? hintColor;
   final Color? fillColor;
+  final Color? enabledBorderColor;
+  final Color? focusedBorderColor;
   final InputBorder? border;
   final EdgeInsetsGeometry? contentPadding;
 
@@ -57,12 +67,15 @@ class _InputBaseState extends State<InputBase> {
 
   @override
   Widget build(BuildContext context) {
+    final palette = Palette.of(context);
+
     final iconButton = IconButton(
       onPressed: () => setState(() => _isPasswordShow = !_isPasswordShow),
       icon: Icon(_isPasswordShow ? Icons.visibility_off : Icons.visibility),
     );
 
     return TextFormField(
+      cursorColor: widget.cursorColor,
       controller: widget.controller,
       initialValue: widget.initialValue,
       validator: widget.validator,
@@ -76,6 +89,7 @@ class _InputBaseState extends State<InputBase> {
       autofocus: widget.autofocus,
       autocorrect: widget.autocorrect,
       decoration: InputDecoration(
+        labelStyle: TextStyle(color: widget.labelColor),
         hintStyle: TextStyle(color: widget.hintColor),
         contentPadding: widget.contentPadding,
         labelText: widget.label,
@@ -83,6 +97,17 @@ class _InputBaseState extends State<InputBase> {
         filled: widget.filled,
         fillColor: widget.fillColor,
         border: widget.border,
+        enabledBorder: widget.border?.copyWith(
+          borderSide: widget.border?.borderSide.copyWith(
+            color: widget.enabledBorderColor ?? palette.gray,
+          ),
+        ),
+        focusedBorder: widget.border?.copyWith(
+          borderSide: widget.border?.borderSide.copyWith(
+            color: widget.focusedBorderColor ?? palette.primary,
+            width: 2,
+          ),
+        ),
         iconColor: widget.iconColor,
         prefixIcon: widget.prefixIcon,
         suffixIcon: widget.passwordField ? iconButton : null,

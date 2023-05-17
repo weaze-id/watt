@@ -20,9 +20,12 @@ class UnderlinedInput extends StatelessWidget {
     this.onChanged,
     this.onFieldSubmitted,
     this.filled,
+    this.cursorColor,
     this.iconColor,
+    this.labelColor,
     this.hintColor,
-    this.borderColor,
+    this.enabledBorderColor,
+    this.focusedBorderColor,
     this.fillColor,
     this.contentPadding,
     this.autofocus = false,
@@ -43,9 +46,12 @@ class UnderlinedInput extends StatelessWidget {
   final void Function(String?)? onChanged;
   final void Function(String?)? onFieldSubmitted;
   final bool? filled;
+  final Color? cursorColor;
   final Color? iconColor;
+  final Color? labelColor;
   final Color? hintColor;
-  final Color? borderColor;
+  final Color? enabledBorderColor;
+  final Color? focusedBorderColor;
   final Color? fillColor;
   final EdgeInsetsGeometry? contentPadding;
   final bool autofocus;
@@ -56,6 +62,7 @@ class UnderlinedInput extends StatelessWidget {
     final wattTheme = WattTheme.of(context);
     return InputBase(
       controller: controller,
+      cursorColor: cursorColor,
       label: label,
       hint: hint,
       initialValue: initialValue,
@@ -70,15 +77,14 @@ class UnderlinedInput extends StatelessWidget {
       onFieldSubmitted: onFieldSubmitted,
       filled: filled,
       iconColor: iconColor,
+      labelColor: labelColor,
       hintColor: hintColor,
       fillColor: fillColor,
       contentPadding: contentPadding,
       autofocus: autofocus,
       autocorrect: autocorrect,
+      focusedBorderColor: focusedBorderColor,
       border: UnderlineInputBorder(
-        borderSide: borderColor != null
-            ? BorderSide(color: borderColor!)
-            : const BorderSide(),
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(wattTheme!.inputBorderRadius),
         ),

@@ -19,9 +19,12 @@ class OutlinedInput extends StatelessWidget {
     this.onSaved,
     this.onChanged,
     this.onFieldSubmitted,
+    this.cursorColor,
     this.iconColor,
+    this.labelColor,
     this.hintColor,
-    this.borderColor,
+    this.enabledBorderColor,
+    this.focusedBorderColor,
     this.contentPadding,
     this.autofocus = false,
     this.autocorrect = false,
@@ -40,9 +43,12 @@ class OutlinedInput extends StatelessWidget {
   final void Function(String?)? onSaved;
   final void Function(String?)? onChanged;
   final void Function(String?)? onFieldSubmitted;
+  final Color? cursorColor;
   final Color? iconColor;
+  final Color? labelColor;
   final Color? hintColor;
-  final Color? borderColor;
+  final Color? enabledBorderColor;
+  final Color? focusedBorderColor;
   final EdgeInsetsGeometry? contentPadding;
   final bool autofocus;
   final bool autocorrect;
@@ -52,6 +58,7 @@ class OutlinedInput extends StatelessWidget {
     final wattTheme = WattTheme.of(context);
     return InputBase(
       controller: controller,
+      cursorColor: cursorColor,
       label: label,
       hint: hint,
       initialValue: initialValue,
@@ -66,18 +73,15 @@ class OutlinedInput extends StatelessWidget {
       onFieldSubmitted: onFieldSubmitted,
       filled: false,
       iconColor: iconColor,
+      labelColor: labelColor,
       hintColor: hintColor,
-      fillColor: null,
       contentPadding: contentPadding,
       autofocus: autofocus,
       autocorrect: autocorrect,
+      enabledBorderColor: enabledBorderColor,
+      focusedBorderColor: focusedBorderColor,
       border: OutlineInputBorder(
-        borderSide: borderColor != null
-            ? BorderSide(color: borderColor!)
-            : const BorderSide(),
-        borderRadius: BorderRadius.circular(
-          wattTheme!.inputBorderRadius,
-        ),
+        borderRadius: BorderRadius.circular(wattTheme!.inputBorderRadius),
       ),
     );
   }
