@@ -11,14 +11,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_secure_storage: ^5.0.2
-  styled_text: ^5.1.0
+  flutter_secure_storage: ^8.0.0
+  styled_text: ^7.0.0
   witt: ^1.1.0
   watt:
     path: ..
 
 dev_dependencies:
-  flutter_launcher_icons: "^0.9.1"
+  flutter_launcher_icons: "^0.13.1"
   flutter_test:
     sdk: flutter
 

@@ -1,3 +1,7 @@
+## 1.6.0
+
+- Make input field cursorColor change highlight and thumb color too
+
 ## 1.5.0
 
 - Add focusedBorderColor to input field
