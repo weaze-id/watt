@@ -1,3 +1,7 @@
+## 1.7.0
+
+- Add valueColor to input field
+
 ## 1.6.0
 
 - Make input field cursorColor change highlight and thumb color too

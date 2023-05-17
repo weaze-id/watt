@@ -20,6 +20,7 @@ class OutlinedInput extends StatelessWidget {
     this.onChanged,
     this.onFieldSubmitted,
     this.cursorColor,
+    this.valueColor,
     this.iconColor,
     this.labelColor,
     this.hintColor,
@@ -44,6 +45,7 @@ class OutlinedInput extends StatelessWidget {
   final void Function(String?)? onChanged;
   final void Function(String?)? onFieldSubmitted;
   final Color? cursorColor;
+  final Color? valueColor;
   final Color? iconColor;
   final Color? labelColor;
   final Color? hintColor;
@@ -73,6 +75,7 @@ class OutlinedInput extends StatelessWidget {
       onFieldSubmitted: onFieldSubmitted,
       filled: false,
       iconColor: iconColor,
+      valueColor: valueColor,
       labelColor: labelColor,
       hintColor: hintColor,
       contentPadding: contentPadding,

@@ -22,6 +22,7 @@ class InputBase extends StatefulWidget {
     this.autocorrect = false,
     required this.filled,
     this.cursorColor,
+    this.valueColor,
     this.iconColor,
     this.labelColor,
     this.hintColor,
@@ -49,6 +50,7 @@ class InputBase extends StatefulWidget {
   final bool autocorrect;
   final bool? filled;
   final Color? cursorColor;
+  final Color? valueColor;
   final Color? iconColor;
   final Color? labelColor;
   final Color? hintColor;
@@ -79,7 +81,7 @@ class _InputBaseState extends State<InputBase> {
       data: theme.copyWith(
         textSelectionTheme: TextSelectionThemeData(
           cursorColor: widget.cursorColor,
-          selectionColor: widget.cursorColor?.withOpacity(.25),
+          selectionColor: widget.cursorColor?.withOpacity(.4),
           selectionHandleColor: widget.cursorColor,
         ),
       ),
@@ -96,6 +98,9 @@ class _InputBaseState extends State<InputBase> {
         maxLines: widget.maxLines,
         autofocus: widget.autofocus,
         autocorrect: widget.autocorrect,
+        style: widget.valueColor != null
+            ? TextStyle(color: widget.valueColor)
+            : null,
         decoration: InputDecoration(
           labelStyle: TextStyle(color: widget.labelColor),
           hintStyle: TextStyle(color: widget.hintColor),
