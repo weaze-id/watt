@@ -1,3 +1,7 @@
+## 1.7.1
+
+- Fix input field icon color not changed
+
 ## 1.7.0
 
 - Add valueColor to input field

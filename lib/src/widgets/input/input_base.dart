@@ -124,6 +124,8 @@ class _InputBaseState extends State<InputBase> {
             ),
           ),
           iconColor: widget.iconColor,
+          prefixIconColor: widget.iconColor,
+          suffixIconColor: widget.iconColor,
           prefixIcon: widget.prefixIcon,
           suffixIcon: widget.passwordField ? iconButton : null,
         ),
