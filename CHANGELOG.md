@@ -1,3 +1,7 @@
+## 1.7.2
+
+- Fix GridBuilder not exported
+
 ## 1.7.1
 
 - Fix input field icon color not changed
