@@ -2,21 +2,19 @@ import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:witt/witt.dart';
 
 import '../constants/string_constants.dart';
 import '../theme/palette.dart';
 
 class SnackbarUtil {
+  static late final BuildContext context;
+
   static void showSnackbar(String title) {
-    final context = WRouter.navigatorKey.currentContext!;
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(title)));
   }
 
   static void showErrorSnackbar(String title) {
-    final context = WRouter.navigatorKey.currentContext!;
     final palette = Palette.of(context);
-
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         backgroundColor: palette.error,

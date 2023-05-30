@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:witt/witt.dart';
 
 import 'loader.dart';
 import 'loader_state.dart';
@@ -22,11 +21,11 @@ class LoaderNotifier extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WListener(
-      notifier: state,
-      builder: (context) {
+    return ValueListenableBuilder<LoaderState>(
+      valueListenable: state,
+      builder: (context, value, loaderState) {
         return Loader(
-          state: state.value,
+          state: value,
           primary: primary,
           onPrimary: onPrimary,
           onTryAgain: onTryAgain,

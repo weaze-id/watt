@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:witt/witt.dart';
 
 import '../../../watt.dart';
 
@@ -26,7 +25,7 @@ class FileInput extends StatelessWidget {
   final void Function(List<PlatformFile> value) onChanged;
   final bool allowMultiple;
 
-  Future<void> _pickFile() async {
+  Future<void> _pickFile(BuildContext context) async {
     DialogUtil.showLoadingDialog();
 
     final result = await FilePicker.platform.pickFiles(
@@ -36,7 +35,7 @@ class FileInput extends StatelessWidget {
     );
 
     if (result == null) {
-      WRouter.pop();
+      Navigator.of(context).pop();
       return;
     }
 
@@ -54,7 +53,7 @@ class FileInput extends StatelessWidget {
     }
 
     onChanged(newValues);
-    WRouter.pop();
+    Navigator.of(context).pop();
   }
 
   void _removeFile(PlatformFile file) {
@@ -87,7 +86,10 @@ class FileInput extends StatelessWidget {
           const SizedBox(height: 16)
         ],
         ...children,
-        BigButton(label: label ?? "Select file", onPressed: _pickFile),
+        BigButton(
+          label: label ?? "Select file",
+          onPressed: () => _pickFile(context),
+        ),
       ],
     );
   }

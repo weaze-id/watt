@@ -2,11 +2,11 @@ library watt;
 
 import 'package:flutter/material.dart';
 
-import 'src/theme/index.dart';
+import 'watt.dart';
 
 export 'package:file_picker/file_picker.dart' show PlatformFile;
 
-export 'src/http/index.dart';
+export 'src/constants/index.dart';
 export 'src/responsive/index.dart';
 export 'src/theme/index.dart';
 export 'src/utils/index.dart';
@@ -30,6 +30,10 @@ class Watt extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = this.theme ?? WattThemeData();
+
+    DialogUtil.context = context;
+    SnackbarUtil.context = context;
+
     return Palette(
       lightPalette: lightPalette ?? PaletteData.kLightPalette,
       darkPalette: darkPalette ?? PaletteData.kDarkPalette,

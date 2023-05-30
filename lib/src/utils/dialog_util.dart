@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:witt/witt.dart';
 
 import '../constants/string_constants.dart';
 
 class DialogUtil {
+  static late final BuildContext context;
+
   static Future<void> showLoadingDialog({Color? primaryColor}) {
-    final context = WRouter.navigatorKey.currentContext!;
     return showDialog(
       context: context,
       barrierDismissible: false,
@@ -24,8 +24,6 @@ class DialogUtil {
     void Function()? onConfirm,
     void Function()? onCancel,
   }) {
-    final context = WRouter.navigatorKey.currentContext!;
-
     return showDialog(
       context: context,
       builder: (contex) => _AlertDialog(
@@ -45,8 +43,6 @@ class DialogUtil {
     void Function()? onConfirm,
     void Function()? onCancel,
   }) {
-    final context = WRouter.navigatorKey.currentContext!;
-
     return showDialog(
       context: context,
       builder: (contex) => _AlertDialog(
@@ -82,12 +78,12 @@ class _AlertDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void onCancelPressed() {
-      WRouter.pop();
+      Navigator.of(context).pop();
       onCancel?.call();
     }
 
     void onConfirmPressed() {
-      WRouter.pop();
+      Navigator.of(context).pop();
       onConfirm?.call();
     }
 
