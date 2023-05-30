@@ -1,3 +1,12 @@
+## 1.8.0
+
+- Change GridBuilder to StaticGrid.builder
+- Change SliverInfiniteScroll to InfiniteScroll.sliver
+- Add StaticGrid.sliver
+- Add InfiniteScroll.separated
+- Add InfiniteScroll.sliverSeparated
+- Add infinite scroll to StaticGrid.builder and StaticGrid.sliver
+
 ## 1.7.2
 
 - Fix GridBuilder not exported
