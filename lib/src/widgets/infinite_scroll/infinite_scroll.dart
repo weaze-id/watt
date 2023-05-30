@@ -2,8 +2,51 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+/// A widget that implements infinite scrolling behavior in a list.
+///
+/// The `InfiniteScroll` widget can be used to create a list that loads more
+/// data dynamically as the user scrolls to the end of the list. It provides
+/// options for different scrolling behaviors and configurations.
+///
+/// The `InfiniteScroll` widget can be used in different ways:
+///   - `InfiniteScroll`: Basic infinite scroll behavior with a regular list.
+///   - `InfiniteScroll.separated`: Infinite scroll behavior with a list
+///     separated by a specified separator widget.
+///   - `InfiniteScroll.sliver`: Infinite scroll behavior with a sliver list.
+///   - `InfiniteScroll.sliverSeparated`: Infinite scroll behavior with a
+///     sliver list separated by a specified separator widget.
+///
+/// The `itemCount` parameter defines the number of items in the list. The
+/// `onLoadData` parameter is a callback function that is called when the list
+/// needs to load more data. The `itemBuilder` parameter is a callback function
+/// that builds each item in the list based on its index.
+///
+/// Example usage:
+/// ```dart
+/// InfiniteScroll(
+///   itemCount: itemCount,
+///   onLoadData: () {
+///     // Load more data here
+///   },
+///   itemBuilder: (context, index) {
+///     // Build each item here
+///   },
+/// )
+/// ```
 // ignore: must_be_immutable
 class InfiniteScroll extends StatefulWidget {
+  /// Creates an `InfiniteScroll` widget.
+  ///
+  /// The [itemCount] parameter is required and defines the number of items
+  /// in the list. The [onLoadData] parameter is a callback function that is
+  /// called when the list needs to load more data. The [itemBuilder]
+  /// parameter is a callback function that builds each item in the list
+  /// based on its index.
+  ///
+  /// Other optional parameters can be used to customize the behavior and
+  /// appearance of the list, such as [primary], [cacheExtent],
+  /// [keyboardDismissBehavior], [scrollDirection], [reverse], [controller],
+  /// [physics], and [padding].
   InfiniteScroll({
     Key? key,
     this.primary,
@@ -19,6 +62,13 @@ class InfiniteScroll extends StatefulWidget {
     required this.itemBuilder,
   }) : super(key: key);
 
+  /// Creates an `InfiniteScroll` widget with a separator.
+  ///
+  /// This constructor is used when you want to separate each item in the
+  /// list with a specified separator widget. The parameters are similar to
+  /// the basic `InfiniteScroll` constructor, with an additional
+  /// [separatorBuilder] parameter that is a callback function responsible
+  /// for building the separator widget for each item.
   InfiniteScroll.separated({
     Key? key,
     this.primary,
@@ -37,6 +87,14 @@ class InfiniteScroll extends StatefulWidget {
         _isSeparated = true,
         super(key: key);
 
+  /// Creates an `InfiniteScroll` widget with a sliver list.
+  ///
+
+  /// This constructor is used when you want to create a sliver list with
+  /// infinite scroll behavior. The parameters are similar to the basic
+  /// `InfiniteScroll` constructor, with additional parameters for sliver
+  /// behavior such as [findChildIndexCallback], [addAutomaticKeepAlives],
+  /// and [addRepaintBoundaries].
   InfiniteScroll.sliver({
     Key? key,
     this.primary,
@@ -59,6 +117,12 @@ class InfiniteScroll extends StatefulWidget {
         _isSliver = true,
         super(key: key);
 
+  /// Creates an `InfiniteScroll` widget with a separated sliver list.
+  ///
+  /// This constructor is used when you want to create a sliver list with
+  /// infinite scroll behavior and a separator between each item. The
+  /// parameters are similar to the basic `InfiniteScroll` constructor, with
+  /// additional parameters for sliver behavior and a separator widget.
   InfiniteScroll.sliverSeparated({
     Key? key,
     this.primary,
@@ -96,14 +160,10 @@ class InfiniteScroll extends StatefulWidget {
   final FutureOr<void> Function()? onLoadData;
   final Widget Function(BuildContext context, int index) itemBuilder;
 
-  // Property for InfiniteScroll.sliver
   int? Function(Key)? _findChildIndexCallback;
   bool? _addAutomaticKeepAlives;
   bool? _addRepaintBoundaries;
-
-  // Property for InfiniteScroll.separated and InfiniteScroll.sliverSeparated
   Widget Function(BuildContext context, int index)? _separatorBuilder;
-
   bool _isSeparated = false;
   bool _isSliver = false;
 
