@@ -35,13 +35,8 @@ class HttpClient {
   Future<http.Response?> get(
     String url, {
     bool ignoreNotFound = true,
-    bool stopOnFailure = true,
     HttpTransaction? transaction,
   }) async {
-    if (transaction?.isFailure ?? false) {
-      return null;
-    }
-
     final response = await http.get(
       Uri.parse(url),
       headers: _createHeaders(),
@@ -50,7 +45,6 @@ class HttpClient {
     transaction?.updateStatus(
       response,
       ignoreNotFound: ignoreNotFound,
-      stopOnFailure: stopOnFailure,
     );
 
     return response;
@@ -60,13 +54,8 @@ class HttpClient {
     String url,
     String? data, {
     bool ignoreNotFound = false,
-    bool stopOnFailure = true,
     HttpTransaction? transaction,
   }) async {
-    if (transaction?.isFailure ?? false) {
-      return null;
-    }
-
     final response = await http.post(
       Uri.parse(url),
       body: data,
@@ -76,7 +65,6 @@ class HttpClient {
     transaction?.updateStatus(
       response,
       ignoreNotFound: ignoreNotFound,
-      stopOnFailure: stopOnFailure,
     );
 
     return response;
@@ -86,13 +74,8 @@ class HttpClient {
     String url,
     String? data, {
     bool ignoreNotFound = false,
-    bool stopOnFailure = true,
     HttpTransaction? transaction,
   }) async {
-    if (transaction?.isFailure ?? false) {
-      return null;
-    }
-
     final response = await http.put(
       Uri.parse(url),
       body: data,
@@ -102,7 +85,6 @@ class HttpClient {
     transaction?.updateStatus(
       response,
       ignoreNotFound: ignoreNotFound,
-      stopOnFailure: stopOnFailure,
     );
 
     return response;
@@ -111,13 +93,8 @@ class HttpClient {
   Future<http.Response?> delete(
     String url, {
     bool ignoreNotFound = false,
-    bool stopOnFailure = true,
     HttpTransaction? transaction,
   }) async {
-    if (transaction?.isFailure ?? false) {
-      return null;
-    }
-
     final response = await http.delete(
       Uri.parse(url),
       headers: _createHeaders(),
@@ -126,7 +103,6 @@ class HttpClient {
     transaction?.updateStatus(
       response,
       ignoreNotFound: ignoreNotFound,
-      stopOnFailure: stopOnFailure,
     );
 
     return response;
@@ -138,13 +114,8 @@ class HttpClient {
     Map<String, String>? fields,
     List<String>? filePaths,
     bool ignoreNotFound = false,
-    bool stopOnFailure = true,
     HttpTransaction? transaction,
   }) async {
-    if (transaction?.isFailure ?? false) {
-      return null;
-    }
-
     final request = http.MultipartRequest("POST", Uri.parse(url));
     request.headers.addAll(_createHeaders());
 
@@ -165,7 +136,6 @@ class HttpClient {
     transaction?.updateStatus(
       response,
       ignoreNotFound: ignoreNotFound,
-      stopOnFailure: stopOnFailure,
     );
 
     return response;

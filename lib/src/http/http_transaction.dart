@@ -16,7 +16,6 @@ class HttpTransaction {
     required this.httpErrorHandler,
   });
 
-  bool isFailure = false;
   http.Response? response;
 
   Future<void> handleError() async {
@@ -30,7 +29,6 @@ class HttpTransaction {
   void updateStatus(
     http.Response response, {
     required bool ignoreNotFound,
-    required bool stopOnFailure,
   }) {
     if (HttpClient.isSuccess(response)) {
       return;
@@ -38,10 +36,6 @@ class HttpTransaction {
 
     if (ignoreNotFound && response.statusCode == 404) {
       return;
-    }
-
-    if (stopOnFailure) {
-      isFailure = true;
     }
 
     this.response = response;
