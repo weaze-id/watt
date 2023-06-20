@@ -1,3 +1,7 @@
+## 1.9.0
+
+- Remove HttpTransaction stopOnFailure feature
+
 ## 1.8.1
 
 - Downgrade intl version to 0.18.0
