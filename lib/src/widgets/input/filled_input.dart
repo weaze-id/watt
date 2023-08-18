@@ -20,6 +20,7 @@ class FilledInput extends StatelessWidget {
     this.onChanged,
     this.onFieldSubmitted,
     this.cursorColor,
+    this.valueColor,
     this.iconColor,
     this.labelColor,
     this.hintColor,
@@ -43,6 +44,7 @@ class FilledInput extends StatelessWidget {
   final void Function(String?)? onChanged;
   final void Function(String?)? onFieldSubmitted;
   final Color? cursorColor;
+  final Color? valueColor;
   final Color? iconColor;
   final Color? labelColor;
   final Color? hintColor;
@@ -79,6 +81,7 @@ class FilledInput extends StatelessWidget {
           onChanged: onChanged,
           onFieldSubmitted: onFieldSubmitted,
           filled: true,
+          valueColor: valueColor,
           iconColor: iconColor,
           hintColor: hintColor,
           fillColor: fillColor ?? palette.gray.withOpacity(.15),
