@@ -1,3 +1,8 @@
+## 2.0.0
+
+- Remove http implementation
+- Remove witt state management library
+
 ## 1.10.0
 
 - Add valueColor property to FilledInput
