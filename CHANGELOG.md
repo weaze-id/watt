@@ -1,3 +1,7 @@
+## 1.10.0
+
+- Add valueColor property to FilledInput
+
 ## 1.9.0
 
 - Remove HttpTransaction stopOnFailure feature
