@@ -7,15 +7,13 @@ import '../constants/string_constants.dart';
 import '../theme/palette.dart';
 
 class SnackbarUtil {
-  static BuildContext? context;
-
-  static void showSnackbar(String title) {
-    ScaffoldMessenger.of(context!).showSnackBar(SnackBar(content: Text(title)));
+  static void showSnackbar(BuildContext context, String title) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(title)));
   }
 
-  static void showErrorSnackbar(String title) {
-    final palette = Palette.of(context!);
-    ScaffoldMessenger.of(context!).showSnackBar(
+  static void showErrorSnackbar(BuildContext context, String title) {
+    final palette = Palette.of(context);
+    ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         backgroundColor: palette.error,
         content: Text(title, style: TextStyle(color: palette.onError)),
@@ -23,15 +21,19 @@ class SnackbarUtil {
     );
   }
 
-  static void showNoInternetSnackbar() {
-    showErrorSnackbar(StringConstants.noInternetMessage);
+  static void showNoInternetSnackbar(BuildContext context) {
+    showErrorSnackbar(context, StringConstants.noInternetMessage);
   }
 
-  static void showUnknownErrorSnackbar(Object? e, {StackTrace? stackTrace}) {
+  static void showUnknownErrorSnackbar(
+    BuildContext context,
+    Object? e, {
+    StackTrace? stackTrace,
+  }) {
     if (e != null && !kReleaseMode) {
       log(e.toString(), stackTrace: stackTrace, level: 4);
     }
 
-    showErrorSnackbar(StringConstants.unknownError);
+    showErrorSnackbar(context, StringConstants.unknownError);
   }
 }

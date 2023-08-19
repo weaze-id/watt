@@ -30,10 +30,6 @@ class Watt extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = this.theme ?? WattThemeData();
-
-    DialogUtil.context = context;
-    SnackbarUtil.context = context;
-
     return Palette(
       lightPalette: lightPalette ?? PaletteData.kLightPalette,
       darkPalette: darkPalette ?? PaletteData.kDarkPalette,

@@ -26,7 +26,7 @@ class FileInput extends StatelessWidget {
   final bool allowMultiple;
 
   Future<void> _pickFile(BuildContext context) async {
-    DialogUtil.showLoadingDialog();
+    DialogUtil.showLoadingDialog(context);
 
     final result = await FilePicker.platform.pickFiles(
       type: fileType,
