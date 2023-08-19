@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import '../constants/string_constants.dart';
 
 class DialogUtil {
-  static late final BuildContext context;
+  static BuildContext? context;
 
   static Future<void> showLoadingDialog({Color? primaryColor}) {
     return showDialog(
-      context: context,
+      context: context!,
       barrierDismissible: false,
       builder: (contex) => WillPopScope(
         onWillPop: () async => false,
@@ -25,7 +25,7 @@ class DialogUtil {
     void Function()? onCancel,
   }) {
     return showDialog(
-      context: context,
+      context: context!,
       builder: (contex) => _AlertDialog(
         title: title,
         message: message,
@@ -44,7 +44,7 @@ class DialogUtil {
     void Function()? onCancel,
   }) {
     return showDialog(
-      context: context,
+      context: context!,
       builder: (contex) => _AlertDialog(
         title: StringConstants.noInternetTitle,
         message: StringConstants.noInternetMessage,

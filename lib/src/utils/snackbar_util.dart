@@ -7,15 +7,15 @@ import '../constants/string_constants.dart';
 import '../theme/palette.dart';
 
 class SnackbarUtil {
-  static late final BuildContext context;
+  static BuildContext? context;
 
   static void showSnackbar(String title) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(title)));
+    ScaffoldMessenger.of(context!).showSnackBar(SnackBar(content: Text(title)));
   }
 
   static void showErrorSnackbar(String title) {
-    final palette = Palette.of(context);
-    ScaffoldMessenger.of(context).showSnackBar(
+    final palette = Palette.of(context!);
+    ScaffoldMessenger.of(context!).showSnackBar(
       SnackBar(
         backgroundColor: palette.error,
         content: Text(title, style: TextStyle(color: palette.onError)),
