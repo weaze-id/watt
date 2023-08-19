@@ -1,3 +1,7 @@
+## 2.0.1
+
+- Change min sdk version
+
 ## 2.0.0
 
 - Remove http implementation
