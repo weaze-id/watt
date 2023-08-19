@@ -1,3 +1,7 @@
+## 2.0.2
+
+- Fix build context has already been initialized
+
 ## 2.0.1
 
 - Change min sdk version
