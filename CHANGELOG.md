@@ -1,3 +1,7 @@
+## 2.0.3
+
+- Now dialog util and snackbar util, need BuildContext parameter
+
 ## 2.0.2
 
 - Fix build context has already been initialized
