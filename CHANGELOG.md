@@ -1,3 +1,7 @@
+## 2.1.1
+
+- Fix pub.dev points
+
 ## 2.1.0
 
 - Make SnackbarUtil.showUnknownErrorSnackbar e parameter optional
