@@ -1,3 +1,10 @@
+## 2.1.0
+
+- Make SnackbarUtil.showUnknownErrorSnackbar e parameter optional
+- Add notificationMessageData parameter to WattThemeData
+
+  With this parameter you can set default notification message from one place
+
 ## 2.0.3
 
 - Now dialog util and snackbar util, need BuildContext parameter
