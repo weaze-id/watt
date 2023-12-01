@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../watt.dart';
 import 'index.dart';
 
 class WattThemeData {
@@ -8,6 +9,7 @@ class WattThemeData {
   final double inputBorderRadius;
   final bool appBarCenterTitle;
   final double appBarElevation;
+  final NotificationMessageData notificationMessageData;
 
   WattThemeData({
     this.fontFamily = "Poppins",
@@ -15,6 +17,7 @@ class WattThemeData {
     this.inputBorderRadius = 8,
     this.appBarCenterTitle = false,
     this.appBarElevation = 0,
+    this.notificationMessageData = const NotificationMessageData(),
   });
 
   ThemeData generate(BuildContext context) {
@@ -273,5 +276,65 @@ class WattThemeData {
       foregroundColor: palette.onPrimary,
       splashColor: Colors.black.withOpacity(.25),
     );
+  }
+}
+
+class NotificationMessageData {
+  final String Function(BuildContext context)? noInternetTitle;
+  final String Function(BuildContext context)? noInternetMessage;
+  final String Function(BuildContext context)? noDataTitle;
+  final String Function(BuildContext context)? noDataMessage;
+  final String Function(BuildContext context)? unknownErrorTitle;
+  final String Function(BuildContext context)? unknownErrorMessage;
+  final String Function(BuildContext context)? confirmLabel;
+  final String Function(BuildContext context)? tryAgainLabel;
+
+  const NotificationMessageData({
+    this.noInternetTitle,
+    this.noInternetMessage,
+    this.noDataTitle,
+    this.noDataMessage,
+    this.unknownErrorTitle,
+    this.unknownErrorMessage,
+    this.confirmLabel,
+    this.tryAgainLabel,
+  });
+
+  String getNoInternetTitle(BuildContext context, String? value) {
+    return value ?? noInternetTitle?.call(context) ?? "No internet";
+  }
+
+  String getNoInternetMessage(BuildContext context, String? value) {
+    return value ??
+        noInternetMessage?.call(context) ??
+        "Please check your internet connection";
+  }
+
+  String getNoDataTitle(BuildContext context, String? value) {
+    return value ?? noDataTitle?.call(context) ?? "No data";
+  }
+
+  String getNoDataMessage(BuildContext context, String? value) {
+    return value ??
+        noDataMessage?.call(context) ??
+        "There is currently no data available to show";
+  }
+
+  String getUnknownErrorTitle(BuildContext context, String? value) {
+    return value ?? unknownErrorTitle?.call(context) ?? "Unknown error";
+  }
+
+  String getUnknownErrorMessage(BuildContext context, String? value) {
+    return value ??
+        unknownErrorMessage?.call(context) ??
+        "Something went wrong, please try again later";
+  }
+
+  String getConfirmLabel(BuildContext context, String? value) {
+    return value ?? confirmLabel?.call(context) ?? "Ok";
+  }
+
+  String getTryAgainLabel(BuildContext context, String? value) {
+    return value ?? tryAgainLabel?.call(context) ?? "Try again";
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../constants/string_constants.dart';
+import '../../watt.dart';
 
 class DialogUtil {
   static Future<void> showLoadingDialog(
@@ -41,16 +41,25 @@ class DialogUtil {
 
   static Future<void> showNoInternetDialog(
     BuildContext context, {
+    String? title,
+    String? message,
     String? confirmLabel,
     String? cancelLabel,
     void Function()? onConfirm,
     void Function()? onCancel,
   }) {
+    final wattTheme = WattTheme.of(context)!;
     return showDialog(
       context: context,
       builder: (contex) => _AlertDialog(
-        title: StringConstants.noInternetTitle,
-        message: StringConstants.noInternetMessage,
+        title: wattTheme.notificationMessageData.getNoInternetTitle(
+          context,
+          title,
+        ),
+        message: wattTheme.notificationMessageData.getNoInternetMessage(
+          context,
+          message,
+        ),
         confirmLabel: confirmLabel,
         cancelLabel: cancelLabel,
         onConfirm: onConfirm,
@@ -80,6 +89,8 @@ class _AlertDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final wattTheme = WattTheme.of(context)!;
+
     void onCancelPressed() {
       Navigator.of(context).pop();
       onCancel?.call();
@@ -101,7 +112,12 @@ class _AlertDialog extends StatelessWidget {
           ),
         TextButton(
           onPressed: onConfirmPressed,
-          child: Text(confirmLabel ?? StringConstants.confirmLabel),
+          child: Text(
+            wattTheme.notificationMessageData.getConfirmLabel(
+              context,
+              confirmLabel,
+            ),
+          ),
         ),
       ],
     );

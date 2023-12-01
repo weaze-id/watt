@@ -6,7 +6,6 @@ import 'watt.dart';
 
 export 'package:file_picker/file_picker.dart' show PlatformFile;
 
-export 'src/constants/index.dart';
 export 'src/responsive/index.dart';
 export 'src/theme/index.dart';
 export 'src/utils/index.dart';

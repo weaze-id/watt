@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/string_constants.dart';
-import 'error_message.dart';
+import '../../../watt.dart';
 
 class NoDataMessage extends StatelessWidget {
   const NoDataMessage({
@@ -21,9 +20,16 @@ class NoDataMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final wattTheme = WattTheme.of(context)!;
     return ErrorMessage(
-      title: title ?? StringConstants.noDataTitle,
-      message: message ?? StringConstants.noDataMessage,
+      title: wattTheme.notificationMessageData.getNoDataTitle(
+        context,
+        title,
+      ),
+      message: wattTheme.notificationMessageData.getNoDataMessage(
+        context,
+        message,
+      ),
       icon: const Icon(Icons.subtitles_off_outlined),
       primary: primary,
       onPrimary: onPrimary,

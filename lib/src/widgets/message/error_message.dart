@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/string_constants.dart';
-import '../../theme/palette.dart';
+import '../../../watt.dart';
 
 class ErrorMessage extends StatelessWidget {
   const ErrorMessage({
@@ -27,6 +26,7 @@ class ErrorMessage extends StatelessWidget {
   Widget build(BuildContext context) {
     final palette = Palette.of(context);
     final textTheme = Theme.of(context).textTheme;
+    final wattTheme = WattTheme.of(context)!;
 
     return Center(
       child: Padding(
@@ -51,7 +51,12 @@ class ErrorMessage extends StatelessWidget {
                   foregroundColor: primary,
                   backgroundColor: onPrimary,
                 ),
-                child: Text(buttonLabel ?? StringConstants.tryAgainLabel),
+                child: Text(
+                  wattTheme.notificationMessageData.getTryAgainLabel(
+                    context,
+                    buttonLabel,
+                  ),
+                ),
               ),
             ]
           ],
