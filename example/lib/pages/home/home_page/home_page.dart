@@ -10,6 +10,7 @@ import 'widgets/home_format_section.dart';
 import 'widgets/home_inputs_section.dart';
 import 'widgets/home_loader_section.dart';
 import 'widgets/home_message_section.dart';
+import 'widgets/home_notification_section.dart';
 import 'widgets/home_select_section.dart';
 
 class HomePage extends StatelessWidget {
@@ -83,6 +84,8 @@ class _Body extends StatelessWidget {
           HomeInputsSection(),
           SizedBox(height: 32),
           HomeSelectSection(),
+          SizedBox(height: 32),
+          HomeNotificationSection(),
           SizedBox(height: 32),
           HomeLoaderSection(),
           SizedBox(height: 32),
