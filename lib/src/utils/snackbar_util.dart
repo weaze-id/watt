@@ -26,8 +26,8 @@ class SnackbarUtil {
   }
 
   static void showUnknownErrorSnackbar(
-    BuildContext context,
-    Object? e, {
+    BuildContext context, {
+    Object? e,
     StackTrace? stackTrace,
   }) {
     if (e != null && !kReleaseMode) {
