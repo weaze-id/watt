@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:watt/watt.dart';
 import 'package:witt/witt.dart';
 
+import '../../../app_router.dart';
 import '../home_route.dart';
 import 'widgets/home_button_section.dart';
 import 'widgets/home_color_palette_section.dart';
@@ -22,14 +23,14 @@ class HomePage extends StatelessWidget {
         title: const Text("Example"),
         actions: [
           IconButton(
-            onPressed: () => WRouter.pushNamed(HomeRoute.infiniteScrollPath),
+            onPressed: () => AppRouter.pushNamed(HomeRoute.infiniteScrollPath),
             icon: const Icon(Icons.list),
           ),
           const _ThemeModeChangebutton(),
         ],
       ),
       body: WListener(
-        notifier: loaderState,
+        notifiers: [loaderState],
         builder: (context) {
           return LoaderNotifier(state: loaderState, child: const _Body());
         },
@@ -45,7 +46,7 @@ class _ThemeModeChangebutton extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeMode = WProvider.of<ValueNotifier<ThemeMode>>(context);
     return WListener(
-      notifier: themeMode,
+      notifiers: [themeMode],
       builder: (context) {
         final themeModeValue = themeMode.value;
         return IconButton(

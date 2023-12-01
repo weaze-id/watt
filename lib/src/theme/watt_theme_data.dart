@@ -35,6 +35,7 @@ class WattThemeData {
     );
 
     return ThemeData(
+      useMaterial3: false,
       fontFamily: fontFamily,
       colorScheme: palette.toColorScheme(),
       textTheme: textTheme,

@@ -4,11 +4,11 @@ version: 2.0.3
 repository: https://github.com/weaze-id/watt
 
 environment:
-  sdk: ">=3.1.0 <4.0.0"
+  sdk: ">=3.2.2 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
-  file_picker: ^5.3.2
+  file_picker: ^6.1.1
   flutter:
     sdk: flutter
   intl: ^0.18.1

@@ -10,8 +10,8 @@ class DialogUtil {
     return showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (contex) => WillPopScope(
-        onWillPop: () async => false,
+      builder: (contex) => PopScope(
+        canPop: false,
         child: Center(child: CircularProgressIndicator(color: primaryColor)),
       ),
     );
