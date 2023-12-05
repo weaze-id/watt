@@ -11,9 +11,7 @@ class SelectList<T> extends StatelessWidget {
     required this.selections,
     required this.onSelectionChanged,
     this.multiSelectionEnabled = false,
-  })  : assert((multiSelectionEnabled && selected.length > 0) ||
-            (!multiSelectionEnabled && selected.length == 1)),
-        super(key: key);
+  }) : super(key: key);
 
   final EdgeInsetsGeometry? contentPadding;
   final List<SelectItem<T>> selections;

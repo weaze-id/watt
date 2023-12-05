@@ -1,3 +1,7 @@
+## 2.1.2
+
+- Fix SelectList assert
+
 ## 2.1.1
 
 - Fix pub.dev points
