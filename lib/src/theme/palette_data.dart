@@ -154,7 +154,6 @@ class PaletteData {
       tertiary: primary,
       tertiaryContainer: primary.withOpacity(.25),
       surface: surface,
-      background: background,
       error: error,
       onPrimary: onPrimary,
       onPrimaryContainer: primary[800],
@@ -163,7 +162,6 @@ class PaletteData {
       onTertiary: onPrimary,
       onTertiaryContainer: primary[800],
       onSurface: onSurface,
-      onBackground: onBackground,
       onError: onError,
       brightness: brightness,
     );

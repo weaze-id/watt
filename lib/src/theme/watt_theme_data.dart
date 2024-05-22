@@ -63,42 +63,42 @@ class WattThemeData {
           OutlinedButtonThemeData(style: _buttonStyle(palette)),
       floatingActionButtonTheme: _fabThemeData(palette),
       switchTheme: SwitchThemeData(
-        thumbColor: MaterialStateProperty.resolveWith<Color?>((states) {
-          if (states.contains(MaterialState.disabled)) {
+        thumbColor: WidgetStateProperty.resolveWith<Color?>((states) {
+          if (states.contains(WidgetState.disabled)) {
             return null;
           }
-          if (states.contains(MaterialState.selected)) {
+          if (states.contains(WidgetState.selected)) {
             return palette.primary;
           }
           return null;
         }),
-        trackColor: MaterialStateProperty.resolveWith<Color?>((states) {
-          if (states.contains(MaterialState.disabled)) {
+        trackColor: WidgetStateProperty.resolveWith<Color?>((states) {
+          if (states.contains(WidgetState.disabled)) {
             return null;
           }
-          if (states.contains(MaterialState.selected)) {
+          if (states.contains(WidgetState.selected)) {
             return palette.primary;
           }
           return null;
         }),
       ),
       radioTheme: RadioThemeData(
-        fillColor: MaterialStateProperty.resolveWith<Color?>((states) {
-          if (states.contains(MaterialState.disabled)) {
+        fillColor: WidgetStateProperty.resolveWith<Color?>((states) {
+          if (states.contains(WidgetState.disabled)) {
             return null;
           }
-          if (states.contains(MaterialState.selected)) {
+          if (states.contains(WidgetState.selected)) {
             return palette.primary;
           }
           return null;
         }),
       ),
       checkboxTheme: CheckboxThemeData(
-        fillColor: MaterialStateProperty.resolveWith<Color?>((states) {
-          if (states.contains(MaterialState.disabled)) {
+        fillColor: WidgetStateProperty.resolveWith<Color?>((states) {
+          if (states.contains(WidgetState.disabled)) {
             return null;
           }
-          if (states.contains(MaterialState.selected)) {
+          if (states.contains(WidgetState.selected)) {
             return palette.primary;
           }
           return null;
@@ -236,10 +236,10 @@ class WattThemeData {
     TextTheme textTheme,
   ) {
     return NavigationBarThemeData(
-      labelTextStyle: MaterialStateProperty.resolveWith<TextStyle?>((states) {
+      labelTextStyle: WidgetStateProperty.resolveWith<TextStyle?>((states) {
         return textTheme.labelMedium?.copyWith(color: palette.onSurface);
       }),
-      iconTheme: MaterialStateProperty.resolveWith<IconThemeData?>((states) {
+      iconTheme: WidgetStateProperty.resolveWith<IconThemeData?>((states) {
         return IconThemeData(color: palette.onSurface);
       }),
     );
@@ -248,7 +248,7 @@ class WattThemeData {
   ElevatedButtonThemeData _elevatedbuttonStyle(PaletteData palette) {
     return ElevatedButtonThemeData(
       style: _buttonStyle(palette).copyWith(
-        overlayColor: MaterialStateColor.resolveWith(
+        overlayColor: WidgetStateColor.resolveWith(
           (states) => Colors.black.withOpacity(.25),
         ),
       ),
@@ -259,12 +259,12 @@ class WattThemeData {
     return ButtonStyle(
       visualDensity: VisualDensity.standard,
       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      shape: MaterialStateProperty.resolveWith(
+      shape: WidgetStateProperty.resolveWith(
         (states) => RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(buttonBorderRadius),
         ),
       ),
-      elevation: MaterialStateProperty.resolveWith((states) => 0),
+      elevation: WidgetStateProperty.resolveWith((states) => 0),
     );
   }
 

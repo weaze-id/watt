@@ -1,3 +1,7 @@
+## 2.2.0
+
+- Migrate flutter
+
 ## 2.1.3
 
 - Add missing suffixIcon property to input
