@@ -12,6 +12,7 @@ class UnderlinedInput extends StatelessWidget {
     this.initialValue,
     this.passwordField = false,
     this.prefixIcon,
+    this.suffixIcon,
     this.maxLength,
     this.maxLines = 1,
     this.keyboardType,
@@ -39,6 +40,7 @@ class UnderlinedInput extends StatelessWidget {
   final String? initialValue;
   final bool passwordField;
   final Widget? prefixIcon;
+  final Widget? suffixIcon;
   final int? maxLength;
   final int? maxLines;
   final TextInputType? keyboardType;
@@ -70,6 +72,7 @@ class UnderlinedInput extends StatelessWidget {
       initialValue: initialValue,
       passwordField: passwordField,
       prefixIcon: prefixIcon,
+      suffixIcon: suffixIcon,
       maxLength: maxLength,
       maxLines: maxLines,
       keyboardType: keyboardType,

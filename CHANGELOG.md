@@ -1,3 +1,7 @@
+## 2.1.3
+
+- Add missing suffixIcon property to input
+
 ## 2.1.2
 
 - Fix SelectList assert

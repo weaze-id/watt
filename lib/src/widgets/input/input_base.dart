@@ -11,6 +11,7 @@ class InputBase extends StatefulWidget {
     required this.initialValue,
     required this.passwordField,
     required this.prefixIcon,
+    required this.suffixIcon,
     required this.maxLength,
     required this.maxLines,
     required this.keyboardType,
@@ -39,6 +40,7 @@ class InputBase extends StatefulWidget {
   final String? initialValue;
   final bool passwordField;
   final Widget? prefixIcon;
+  final Widget? suffixIcon;
   final int? maxLength;
   final int? maxLines;
   final TextInputType? keyboardType;
@@ -127,7 +129,7 @@ class _InputBaseState extends State<InputBase> {
           prefixIconColor: widget.iconColor,
           suffixIconColor: widget.iconColor,
           prefixIcon: widget.prefixIcon,
-          suffixIcon: widget.passwordField ? iconButton : null,
+          suffixIcon: widget.passwordField ? iconButton : widget.suffixIcon,
         ),
       ),
     );
