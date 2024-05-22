@@ -7,6 +7,7 @@ class FilledInput extends StatelessWidget {
   const FilledInput({
     Key? key,
     this.controller,
+    this.enabled,
     this.label,
     this.hint,
     this.initialValue,
@@ -32,6 +33,7 @@ class FilledInput extends StatelessWidget {
   }) : super(key: key);
 
   final TextEditingController? controller;
+  final bool? enabled;
   final String? label;
   final String? hint;
   final String? initialValue;
@@ -69,6 +71,7 @@ class FilledInput extends StatelessWidget {
         ],
         InputBase(
           controller: controller,
+          enabled: enabled,
           cursorColor: cursorColor,
           label: null,
           hint: hint,

@@ -1,3 +1,7 @@
+## 2.2.1
+
+- Add missing enabled property to input
+
 ## 2.2.0
 
 - Migrate flutter

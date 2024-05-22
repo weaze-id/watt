@@ -6,6 +6,7 @@ class InputBase extends StatefulWidget {
   const InputBase({
     Key? key,
     required this.controller,
+    required this.enabled,
     required this.label,
     required this.hint,
     required this.initialValue,
@@ -35,6 +36,7 @@ class InputBase extends StatefulWidget {
   }) : super(key: key);
 
   final TextEditingController? controller;
+  final bool? enabled;
   final String? label;
   final String? hint;
   final String? initialValue;
@@ -88,6 +90,7 @@ class _InputBaseState extends State<InputBase> {
         ),
       ),
       child: TextFormField(
+        enabled: widget.enabled,
         controller: widget.controller,
         initialValue: widget.initialValue,
         validator: widget.validator,

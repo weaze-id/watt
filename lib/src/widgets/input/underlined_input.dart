@@ -7,6 +7,7 @@ class UnderlinedInput extends StatelessWidget {
   const UnderlinedInput({
     Key? key,
     this.controller,
+    this.enabled,
     this.label,
     this.hint,
     this.initialValue,
@@ -35,6 +36,7 @@ class UnderlinedInput extends StatelessWidget {
   }) : super(key: key);
 
   final TextEditingController? controller;
+  final bool? enabled;
   final String? label;
   final String? hint;
   final String? initialValue;
@@ -66,6 +68,7 @@ class UnderlinedInput extends StatelessWidget {
     final wattTheme = WattTheme.of(context);
     return InputBase(
       controller: controller,
+      enabled: enabled,
       cursorColor: cursorColor,
       label: label,
       hint: hint,
