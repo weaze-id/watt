@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../watt.dart';
 
@@ -6,6 +7,9 @@ class InputBase extends StatefulWidget {
   const InputBase({
     Key? key,
     required this.controller,
+    required this.readOnly,
+    required this.showCursor,
+    required this.inputFormatters,
     required this.enabled,
     required this.label,
     required this.hint,
@@ -36,6 +40,9 @@ class InputBase extends StatefulWidget {
   }) : super(key: key);
 
   final TextEditingController? controller;
+  final bool readOnly;
+  final bool? showCursor;
+  final List<TextInputFormatter>? inputFormatters;
   final bool? enabled;
   final String? label;
   final String? hint;
@@ -91,6 +98,9 @@ class _InputBaseState extends State<InputBase> {
       ),
       child: TextFormField(
         enabled: widget.enabled,
+        readOnly: widget.readOnly,
+        showCursor: widget.showCursor,
+        inputFormatters: widget.inputFormatters,
         controller: widget.controller,
         initialValue: widget.initialValue,
         validator: widget.validator,

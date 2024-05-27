@@ -11,7 +11,7 @@ class PaletteData {
   final MaterialColor background;
   final MaterialColor onPrimary;
   final MaterialColor onSecondary;
-  final MaterialColor onTersiary;
+  final MaterialColor onTertiary;
   final MaterialColor onError;
   final MaterialColor onSurface;
   final MaterialColor onBackground;
@@ -46,7 +46,7 @@ class PaletteData {
     required this.background,
     required this.onPrimary,
     required this.onSecondary,
-    required this.onTersiary,
+    required this.onTertiary,
     required this.onError,
     required this.onSurface,
     required this.onBackground,
@@ -82,7 +82,7 @@ class PaletteData {
     MaterialColor? background,
     MaterialColor? onPrimary,
     MaterialColor? onSecondary,
-    MaterialColor? onTersiary,
+    MaterialColor? onTertiary,
     MaterialColor? onError,
     MaterialColor? onSurface,
     MaterialColor? onBackground,
@@ -117,7 +117,7 @@ class PaletteData {
       background: background ?? this.background,
       onPrimary: onPrimary ?? this.onPrimary,
       onSecondary: onSecondary ?? this.onSecondary,
-      onTersiary: onTersiary ?? this.onTersiary,
+      onTertiary: onTertiary ?? this.onTertiary,
       onError: onError ?? this.onError,
       onSurface: onSurface ?? this.onSurface,
       onBackground: onBackground ?? this.onBackground,
@@ -176,7 +176,7 @@ class PaletteData {
     background: ColorUtil.createMaterialColor(Colors.white),
     onPrimary: ColorUtil.createMaterialColor(Colors.white),
     onSecondary: ColorUtil.createMaterialColor(Colors.white),
-    onTersiary: ColorUtil.createMaterialColor(Colors.white),
+    onTertiary: ColorUtil.createMaterialColor(Colors.white),
     onError: ColorUtil.createMaterialColor(Colors.white),
     onSurface: ColorUtil.createMaterialColor(const Color(0xFF323130)),
     onBackground: ColorUtil.createMaterialColor(const Color(0xFF323130)),
@@ -212,7 +212,7 @@ class PaletteData {
     background: ColorUtil.createMaterialColor(const Color(0XFF1C1D22)),
     onPrimary: ColorUtil.createMaterialColor(const Color(0XFF323130)),
     onSecondary: ColorUtil.createMaterialColor(const Color(0XFF323130)),
-    onTersiary: ColorUtil.createMaterialColor(const Color(0XFF323130)),
+    onTertiary: ColorUtil.createMaterialColor(const Color(0XFF323130)),
     onError: ColorUtil.createMaterialColor(const Color(0XFF323130)),
     onSurface: ColorUtil.createMaterialColor(Colors.white),
     onBackground: ColorUtil.createMaterialColor(Colors.white),

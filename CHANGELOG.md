@@ -1,3 +1,10 @@
+## 2.2.2
+
+- Add missing readOnly property to input
+- Add missing showCursor property to input
+- Add missing inputFormatters property to input
+- Fix typo
+
 ## 2.2.1
 
 - Add missing enabled property to input

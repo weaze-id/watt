@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../theme/watt_theme.dart';
 import 'input_base.dart';
@@ -7,6 +8,9 @@ class OutlinedInput extends StatelessWidget {
   const OutlinedInput({
     Key? key,
     this.controller,
+    this.readOnly = false,
+    this.showCursor,
+    this.inputFormatters,
     this.enabled,
     this.label,
     this.hint,
@@ -34,6 +38,9 @@ class OutlinedInput extends StatelessWidget {
   }) : super(key: key);
 
   final TextEditingController? controller;
+  final bool readOnly;
+  final bool? showCursor;
+  final List<TextInputFormatter>? inputFormatters;
   final bool? enabled;
   final String? label;
   final String? hint;
@@ -64,6 +71,9 @@ class OutlinedInput extends StatelessWidget {
     final wattTheme = WattTheme.of(context);
     return InputBase(
       controller: controller,
+      readOnly: readOnly,
+      showCursor: showCursor,
+      inputFormatters: inputFormatters,
       enabled: enabled,
       cursorColor: cursorColor,
       label: label,

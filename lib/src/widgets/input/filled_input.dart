@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../watt.dart';
 import 'input_base.dart';
@@ -7,6 +8,9 @@ class FilledInput extends StatelessWidget {
   const FilledInput({
     Key? key,
     this.controller,
+    this.readOnly = false,
+    this.showCursor,
+    this.inputFormatters,
     this.enabled,
     this.label,
     this.hint,
@@ -33,6 +37,9 @@ class FilledInput extends StatelessWidget {
   }) : super(key: key);
 
   final TextEditingController? controller;
+  final bool readOnly;
+  final bool? showCursor;
+  final List<TextInputFormatter>? inputFormatters;
   final bool? enabled;
   final String? label;
   final String? hint;
@@ -71,6 +78,9 @@ class FilledInput extends StatelessWidget {
         ],
         InputBase(
           controller: controller,
+          readOnly: readOnly,
+          showCursor: showCursor,
+          inputFormatters: inputFormatters,
           enabled: enabled,
           cursorColor: cursorColor,
           label: null,
