@@ -1,3 +1,7 @@
+## 2.3.1
+
+- Hide keyboard when tap outside text field
+
 ## 2.3.0
 
 - Add bigButtonProperty to wattTheme

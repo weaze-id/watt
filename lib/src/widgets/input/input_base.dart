@@ -144,6 +144,9 @@ class _InputBaseState extends State<InputBase> {
           prefixIcon: widget.prefixIcon,
           suffixIcon: widget.passwordField ? iconButton : widget.suffixIcon,
         ),
+        onTapOutside: (event) {
+          FocusManager.instance.primaryFocus?.unfocus();
+        },
       ),
     );
   }
