@@ -5,6 +5,7 @@ import 'index.dart';
 
 class WattThemeData {
   final String fontFamily;
+  final double bigButtonHeight;
   final double buttonBorderRadius;
   final double inputBorderRadius;
   final bool appBarCenterTitle;
@@ -13,6 +14,7 @@ class WattThemeData {
 
   WattThemeData({
     this.fontFamily = "Poppins",
+    this.bigButtonHeight = 55,
     this.buttonBorderRadius = 8,
     this.inputBorderRadius = 8,
     this.appBarCenterTitle = false,

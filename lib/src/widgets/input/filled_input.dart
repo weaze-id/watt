@@ -106,7 +106,7 @@ class FilledInput extends StatelessWidget {
           autocorrect: autocorrect,
           border: OutlineInputBorder(
             borderSide: BorderSide.none,
-            borderRadius: BorderRadius.circular(wattTheme!.inputBorderRadius),
+            borderRadius: BorderRadius.circular(wattTheme.inputBorderRadius),
           ),
         ),
       ],

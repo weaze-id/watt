@@ -12,8 +12,8 @@ class WattTheme extends InheritedWidget {
     required this.child,
   }) : super(key: key, child: child);
 
-  static WattThemeData? of(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<WattTheme>()?.data;
+  static WattThemeData of(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<WattTheme>()!.data;
   }
 
   @override

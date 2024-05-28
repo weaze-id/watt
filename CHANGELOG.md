@@ -1,3 +1,7 @@
+## 2.3.0
+
+- Add bigButtonProperty to wattTheme
+
 ## 2.2.2
 
 - Add missing readOnly property to input

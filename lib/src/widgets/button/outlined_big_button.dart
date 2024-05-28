@@ -22,8 +22,10 @@ class OutlinedBigButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = Palette.of(context);
+    final wattTheme = WattTheme.of(context);
+
     return SizedBox(
-      height: 55,
+      height: wattTheme.bigButtonHeight,
       width: double.infinity,
       child: OutlinedButton(
         style: OutlinedButton.styleFrom(

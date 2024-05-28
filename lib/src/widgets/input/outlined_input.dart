@@ -100,7 +100,7 @@ class OutlinedInput extends StatelessWidget {
       enabledBorderColor: enabledBorderColor,
       focusedBorderColor: focusedBorderColor,
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(wattTheme!.inputBorderRadius),
+        borderRadius: BorderRadius.circular(wattTheme.inputBorderRadius),
       ),
     );
   }

@@ -105,7 +105,7 @@ class UnderlinedInput extends StatelessWidget {
       focusedBorderColor: focusedBorderColor,
       border: UnderlineInputBorder(
         borderRadius: BorderRadius.vertical(
-          top: Radius.circular(wattTheme!.inputBorderRadius),
+          top: Radius.circular(wattTheme.inputBorderRadius),
         ),
       ),
     );

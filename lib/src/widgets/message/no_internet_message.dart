@@ -20,7 +20,7 @@ class NoInternetMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final wattTheme = WattTheme.of(context)!;
+    final wattTheme = WattTheme.of(context);
     return ErrorMessage(
       title: wattTheme.notificationMessageData.getNoInternetTitle(
         context,

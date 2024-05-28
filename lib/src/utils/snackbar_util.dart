@@ -23,7 +23,7 @@ class SnackbarUtil {
   }
 
   static void showNoInternetSnackbar(BuildContext context, {String? content}) {
-    final wattTheme = WattTheme.of(context)!;
+    final wattTheme = WattTheme.of(context);
     showErrorSnackbar(
       context,
       wattTheme.notificationMessageData.getNoInternetMessage(context, content),
@@ -40,7 +40,7 @@ class SnackbarUtil {
       log(e.toString(), stackTrace: stackTrace, level: 4);
     }
 
-    final wattTheme = WattTheme.of(context)!;
+    final wattTheme = WattTheme.of(context);
     showErrorSnackbar(
       context,
       wattTheme.notificationMessageData.getUnknownErrorMessage(

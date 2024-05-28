@@ -26,7 +26,7 @@ class ErrorMessage extends StatelessWidget {
   Widget build(BuildContext context) {
     final palette = Palette.of(context);
     final textTheme = Theme.of(context).textTheme;
-    final wattTheme = WattTheme.of(context)!;
+    final wattTheme = WattTheme.of(context);
 
     return Center(
       child: Padding(

@@ -48,7 +48,7 @@ class DialogUtil {
     void Function()? onConfirm,
     void Function()? onCancel,
   }) {
-    final wattTheme = WattTheme.of(context)!;
+    final wattTheme = WattTheme.of(context);
     return showDialog(
       context: context,
       builder: (contex) => _AlertDialog(
@@ -89,7 +89,7 @@ class _AlertDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final wattTheme = WattTheme.of(context)!;
+    final wattTheme = WattTheme.of(context);
 
     void onCancelPressed() {
       Navigator.of(context).pop();
