@@ -100,7 +100,7 @@ class FilledInput extends StatelessWidget {
           valueColor: valueColor,
           iconColor: iconColor,
           hintColor: hintColor,
-          fillColor: fillColor ?? palette.gray.withOpacity(.15),
+          fillColor: fillColor ?? palette.gray.withValues(alpha: .15),
           contentPadding: contentPadding,
           autofocus: autofocus,
           autocorrect: autocorrect,

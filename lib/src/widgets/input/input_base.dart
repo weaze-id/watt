@@ -92,7 +92,7 @@ class _InputBaseState extends State<InputBase> {
       data: theme.copyWith(
         textSelectionTheme: TextSelectionThemeData(
           cursorColor: widget.cursorColor,
-          selectionColor: widget.cursorColor?.withOpacity(.4),
+          selectionColor: widget.cursorColor?.withValues(alpha: .4),
           selectionHandleColor: widget.cursorColor,
         ),
       ),

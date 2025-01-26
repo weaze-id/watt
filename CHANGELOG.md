@@ -1,3 +1,7 @@
+## 3.0.0
+
+- Upgrade dependencies
+
 ## 2.3.1
 
 - Hide keyboard when tap outside text field

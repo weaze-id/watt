@@ -45,7 +45,7 @@ class WattThemeData {
       colorScheme: palette.toColorScheme(),
       textTheme: textTheme,
       indicatorColor: palette.primary,
-      highlightColor: Colors.black.withOpacity(.25),
+      highlightColor: Colors.black.withValues(alpha: .25),
       scaffoldBackgroundColor: palette.background,
       popupMenuTheme: PopupMenuThemeData(color: palette.surface),
       dialogBackgroundColor: palette.surface,
@@ -193,7 +193,7 @@ class WattThemeData {
   TooltipThemeData _tooltipThemeData(PaletteData palette) {
     return TooltipThemeData(
       decoration: BoxDecoration(
-        color: palette.gray.withOpacity(.75),
+        color: palette.gray.withValues(alpha: .75),
         borderRadius: BorderRadius.circular(4),
       ),
     );
@@ -215,7 +215,7 @@ class WattThemeData {
   TabBarTheme _tabBarTheme(PaletteData palette) {
     return TabBarTheme(
       labelColor: palette.primary,
-      unselectedLabelColor: palette.gray.withOpacity(.75),
+      unselectedLabelColor: palette.gray.withValues(alpha: .75),
     );
   }
 
@@ -251,7 +251,7 @@ class WattThemeData {
     return ElevatedButtonThemeData(
       style: _buttonStyle(palette).copyWith(
         overlayColor: WidgetStateColor.resolveWith(
-          (states) => Colors.black.withOpacity(.25),
+          (states) => Colors.black.withValues(alpha: .25),
         ),
       ),
     );
@@ -276,7 +276,7 @@ class WattThemeData {
     return FloatingActionButtonThemeData(
       backgroundColor: palette.primary,
       foregroundColor: palette.onPrimary,
-      splashColor: Colors.black.withOpacity(.25),
+      splashColor: Colors.black.withValues(alpha: .25),
     );
   }
 }

@@ -39,8 +39,6 @@ class Loader extends StatelessWidget {
         );
       case LoaderState.none:
         return _Child(child: child);
-      default:
-        return const SizedBox();
     }
   }
 }

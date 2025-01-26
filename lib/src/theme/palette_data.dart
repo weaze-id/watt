@@ -148,11 +148,11 @@ class PaletteData {
   ColorScheme toColorScheme() {
     return ColorScheme(
       primary: primary,
-      primaryContainer: primary.withOpacity(.25),
+      primaryContainer: primary.withValues(alpha: .25),
       secondary: primary,
-      secondaryContainer: primary.withOpacity(.25),
+      secondaryContainer: primary.withValues(alpha: .25),
       tertiary: primary,
-      tertiaryContainer: primary.withOpacity(.25),
+      tertiaryContainer: primary.withValues(alpha: .25),
       surface: surface,
       error: error,
       onPrimary: onPrimary,

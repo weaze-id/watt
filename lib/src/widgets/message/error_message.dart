@@ -83,7 +83,7 @@ class _ErrorIcon extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: palette.primary.withOpacity(.1),
+        color: palette.primary.withValues(alpha: .1),
       ),
       child: Theme(
         data: Theme.of(context).copyWith(

@@ -127,7 +127,7 @@ class _FileListTile extends StatelessWidget {
 
     return ListTile(
       leading: CircleAvatar(
-        backgroundColor: palette.gray.withOpacity(.25),
+        backgroundColor: palette.gray.withValues(alpha: .25),
         backgroundImage: isImage ? FileImage(File(file.path!)) : null,
         child: !isImage
             ? Icon(
