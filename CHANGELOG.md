@@ -1,3 +1,8 @@
+## 4.0.0
+
+- Fix deprecated
+- Upgrade dependencies
+
 ## 3.0.0
 
 - Upgrade dependencies

@@ -44,25 +44,25 @@ class WattThemeData {
       fontFamily: fontFamily,
       colorScheme: palette.toColorScheme(),
       textTheme: textTheme,
-      indicatorColor: palette.primary,
       highlightColor: Colors.black.withValues(alpha: .25),
       scaffoldBackgroundColor: palette.background,
       popupMenuTheme: PopupMenuThemeData(color: palette.surface),
-      dialogBackgroundColor: palette.surface,
       dividerColor: palette.gray,
       tooltipTheme: _tooltipThemeData(palette),
       appBarTheme: _appBarTheme(palette, textTheme),
       drawerTheme: DrawerThemeData(backgroundColor: palette.surface),
       tabBarTheme: _tabBarTheme(palette),
-      bottomAppBarTheme: BottomAppBarTheme(color: palette.surface),
+      dialogTheme: DialogThemeData(backgroundColor: palette.surface),
+      bottomAppBarTheme: BottomAppBarThemeData(color: palette.surface),
       bottomNavigationBarTheme: _bottomNavBarThemeData(palette, textTheme),
       navigationBarTheme: _navigationBarTheme(palette, textTheme),
       bottomSheetTheme: BottomSheetThemeData(backgroundColor: palette.surface),
       elevatedButtonTheme: _elevatedbuttonStyle(palette),
       filledButtonTheme: FilledButtonThemeData(style: _buttonStyle(palette)),
       textButtonTheme: TextButtonThemeData(style: _buttonStyle(palette)),
-      outlinedButtonTheme:
-          OutlinedButtonThemeData(style: _buttonStyle(palette)),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: _buttonStyle(palette),
+      ),
       floatingActionButtonTheme: _fabThemeData(palette),
       switchTheme: SwitchThemeData(
         thumbColor: WidgetStateProperty.resolveWith<Color?>((states) {
@@ -212,10 +212,11 @@ class WattThemeData {
     );
   }
 
-  TabBarTheme _tabBarTheme(PaletteData palette) {
-    return TabBarTheme(
+  TabBarThemeData _tabBarTheme(PaletteData palette) {
+    return TabBarThemeData(
       labelColor: palette.primary,
       unselectedLabelColor: palette.gray.withValues(alpha: .75),
+      indicatorColor: palette.primary,
     );
   }
 
@@ -270,9 +271,7 @@ class WattThemeData {
     );
   }
 
-  FloatingActionButtonThemeData _fabThemeData(
-    PaletteData palette,
-  ) {
+  FloatingActionButtonThemeData _fabThemeData(PaletteData palette) {
     return FloatingActionButtonThemeData(
       backgroundColor: palette.primary,
       foregroundColor: palette.onPrimary,
